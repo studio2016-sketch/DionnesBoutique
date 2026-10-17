@@ -2,6 +2,10 @@
 // Verify image licensing/permission before launch; replace with owner-taken authentic unit photos.
 // DO NOT use a fuzzy name match: the id must correspond to the exact size/formulation.
 export const productImages: Record<number,{url:string;source:string}> = {
+6:{url:"https://www.adorebeauty.com.au/pim_media/000/516/615/Givenchy_L%27Interdit_Eau_De_Parfum_80ml_002.png?fmt=webp&h=386&w=386",source:"https://www.adorebeauty.com.au/p/givenchy/givenchy-l-interdit-eau-de-parfum-80ml.html"},
+9:{url:"https://media.douglas.hr/media/image/f9/af/86/YSL61634_2_1280x1280%402x.jpg",source:"https://www.douglas.hr/p/yves-saint-laurent-mon-paris-eau-de-parfum-ysl61634"},
+21:{url:"https://www.perfumenz.co.nz/cdn/shop/products/paco-invictus-victory_1400x1400.jpg?v=1627254242",source:"https://www.perfumenz.co.nz/products/invictus-victory-by-paco-rabanne-100ml-edp"},
+24:{url:"https://finalchoice.com.pk/cdn/shop/files/8057971180509-1_1024x1024_bb7213b7-dbf7-452a-8926-7c5b63853e3c.webp?v=1743339221",source:"https://finalchoice.com.pk/products/dolce-gabbana-the-one-for-men-edt-100ml"},
 17:{url:"https://www.perfumeuk.co.uk/user/products/large/carolina_herrera_perfume_bad_boy_edt_100ml.jpg",source:"https://www.perfumeuk.co.uk/carolina-herrera-bad-boy-edt-100ml"},
 22:{url:"https://cdn.notinoimg.com/detail_main_hq/paco-rabanne/3349668630035_02-o/phantom-intense___240108.jpg",source:"https://www.notino.co.uk/rabanne/phantom-intense-eau-de-parfum-for-men/"},
 23:{url:"https://static2.nordic.pictures/1150707-thickbox_default/gucci-guilty-pour-homme-eau-de-toilette-90ml.jpg",source:"https://www.nordic-digital.com/en/perfumes/556840-gucci-guilty-pour-homme-eau-de-toilette-90ml"},
