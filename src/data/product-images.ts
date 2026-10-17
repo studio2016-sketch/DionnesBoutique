@@ -2,6 +2,18 @@
 // Verify image licensing/permission before launch; replace with owner-taken authentic unit photos.
 // DO NOT use a fuzzy name match: the id must correspond to the exact size/formulation.
 export const productImages: Record<number,{url:string;source:string}> = {
+ 1:{url:"https://arome.mx/cdn/shop/files/perfume-la-vie-est-belle-l-eclat-para-mujer-de-lancome-edt-100ml-arome-mexico-1_1200x.jpg?v=1725389679",source:"https://arome.mx/products/la-vie-est-belle-leclat-mujer-lancome-edt-100ml"},
+ 4:{url:"https://perfumeriasublime.com/cdn/shop/files/MOPIB.jpg?v=1738777470",source:"https://perfumeriasublime.com/products/mopib"},
+ 7:{url:"https://assets.woolworthsstatic.co.za/Paradoxe-Eau-de-Parfum-90ml-507505350.jpg",source:"https://www.woolworths.co.za/prod/_/A-507505350"},
+ 8:{url:"https://perfumegallery.com.mx/cdn/shop/files/3614273961707-3.jpg?v=1750353781",source:"https://perfumegallery.com.mx/products/3614273961707"},
+ 10:{url:"https://www.justmylook.com/cdn/shop/files/DANDG0043_ed99cc1b-db56-486e-ba4d-93231ad873ff.png?v=1765199497",source:"https://www.justmylook.com/products/dolce-gabbana-the-only-one-eau-de-parfum-100ml"},
+ 11:{url:"https://static.thcdn.com/productimg/original/16920863-1975259264598662.jpg",source:"https://www.lookfantastic.com/p/dolce-gabbana-light-blue-eau-de-toilette-100ml/16920863/"},
+ 14:{url:"https://beautytribe.com/cdn/shop/files/chanel-no5-edp-100ml-101337-307628_grande.jpg?v=1732790887",source:"https://beautytribe.com/products/chanel-no-5-edp-100ml"},
+ 18:{url:"https://distcdn.nicehair.dk/products/98356/carolina-herrera-bad-boy-cobalt-edp-100-ml-1747043910.webp",source:"https://nicebeauty.com/de/carolina-herrera-bad-boy-cobalt-edp-100-mln.html"},
+ 19:{url:"https://perfumedubai.com/cdn/shop/files/Chanel_Bleu_De_Chanel_EDP_100ml_1200x1200.png?v=1728631098",source:"https://perfumedubai.com/products/chanel-bleu-de-chanel-edp-100ml"},
+ 28:{url:"https://www.agoratopia.com/api/files/absolu-aventus-100ml%20%281%29.webp",source:"https://www.agoratopia.com/creed/absolu-aventus-eau-de-parfum-100ml"},
+ 29:{url:"https://www.justmylook.com/cdn/shop/files/CREED0030.png?format=webp&v=1751897613&width=1042",source:"https://www.justmylook.com/products/creed-millesime-imperial-eau-de-parfum-100ml"},
+ 37:{url:"https://cdn.tirabeauty.com/v2/billowing-snowflake-434234/tira-p/wrkr/products/pictures/item/free/resize-w%3A540/49Px6GYOf2-1181863_1.jpg",source:"https://www.tirabeauty.com/product/too-faced-born-this-way-foundation-caramel-30-ml-8638944"},
  2:{url:"https://hrd-live.cdn.scayle.cloud/images/c6e7dd58ea477566e462e86bd8745f7e.jpg?bg=ffffff&brightness=1&height=1230&quality=75&width=922",source:"https://www.harrods.com/en-gb/p/carolina-herrera-good-girl-eau-de-parfum-80ml-000000000005956717"},
  20:{url:"https://cdn.salla.sa/OqdeyY/a7ad57f3-2543-4b50-9189-6a5da6cbd21e-1000x1000-hbW1IN6E8g32DXj06xf4ajau1ZMSAduVMMnNKO3n.png",source:"https://harrodsperfume.com/en/dior-homme-intense-edp-dior-harrodsperfume/p1804893983"},
  25:{url:"https://images.matas.dk/encode/8435415012669.jpg",source:"https://www.matas.dk/jean-paul-gaultier-lemale-eau-de-toilette-125-ml"},
