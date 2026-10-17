@@ -2,6 +2,10 @@
 // Verify image licensing/permission before launch; replace with owner-taken authentic unit photos.
 // DO NOT use a fuzzy name match: the id must correspond to the exact size/formulation.
 export const productImages: Record<number,{url:string;source:string}> = {
+17:{url:"https://www.perfumeuk.co.uk/user/products/large/carolina_herrera_perfume_bad_boy_edt_100ml.jpg",source:"https://www.perfumeuk.co.uk/carolina-herrera-bad-boy-edt-100ml"},
+22:{url:"https://cdn.notinoimg.com/detail_main_hq/paco-rabanne/3349668630035_02-o/phantom-intense___240108.jpg",source:"https://www.notino.co.uk/rabanne/phantom-intense-eau-de-parfum-for-men/"},
+23:{url:"https://static2.nordic.pictures/1150707-thickbox_default/gucci-guilty-pour-homme-eau-de-toilette-90ml.jpg",source:"https://www.nordic-digital.com/en/perfumes/556840-gucci-guilty-pour-homme-eau-de-toilette-90ml"},
+27:{url:"https://bfasset.costco-static.com/U447IH35/as/qq5x3xrpnmtc92ssm9fbx7f/4000310209-847__1?auto=webp&format=jpg",source:"https://www.costco.com/p/-/tom-ford-lost-cherry-eau-de-parfum-34-fl-oz/4000310209"},
  1:{url:"https://arome.mx/cdn/shop/files/perfume-la-vie-est-belle-l-eclat-para-mujer-de-lancome-edt-100ml-arome-mexico-1_1200x.jpg?v=1725389679",source:"https://arome.mx/products/la-vie-est-belle-leclat-mujer-lancome-edt-100ml"},
  4:{url:"https://perfumeriasublime.com/cdn/shop/files/MOPIB.jpg?v=1738777470",source:"https://perfumeriasublime.com/products/mopib"},
  7:{url:"https://assets.woolworthsstatic.co.za/Paradoxe-Eau-de-Parfum-90ml-507505350.jpg",source:"https://www.woolworths.co.za/prod/_/A-507505350"},
