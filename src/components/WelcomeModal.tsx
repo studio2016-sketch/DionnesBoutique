@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-const KEY="dionnes-welcome-last-dismissed";
+const KEY="dionnes-welcome-v2-last-dismissed";
 const THIRTY_DAYS=30*24*60*60*1000;
 export default function WelcomeModal(){
  const [open,setOpen]=useState(false); const ref=useRef<HTMLButtonElement>(null);
+ useEffect(()=>{function reopen(){setOpen(true)}window.addEventListener("dionnes:welcome",reopen);return()=>window.removeEventListener("dionnes:welcome",reopen)},[]);
  useEffect(()=>{try{const last=Number(localStorage.getItem(KEY)||0);if(Date.now()-last<THIRTY_DAYS)return;}catch{}const t=setTimeout(()=>setOpen(true),1100);return()=>clearTimeout(t)},[]);
  useEffect(()=>{if(!open)return;const prev=document.body.style.overflow;document.body.style.overflow="hidden";ref.current?.focus();function key(e:KeyboardEvent){if(e.key==="Escape")close();if(e.key==="Tab"){const nodes=document.querySelectorAll<HTMLElement>(".welcome-dialog button,.welcome-dialog a");if(!nodes.length)return;const first=nodes[0],last=nodes[nodes.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}}document.addEventListener("keydown",key);return()=>{document.body.style.overflow=prev;document.removeEventListener("keydown",key)}},[open]);
  function close(){try{localStorage.setItem(KEY,String(Date.now()))}catch{}setOpen(false)}
