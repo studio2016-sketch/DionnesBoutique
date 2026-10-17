@@ -2,6 +2,9 @@
 // Verify image licensing/permission before launch; replace with owner-taken authentic unit photos.
 // DO NOT use a fuzzy name match: the id must correspond to the exact size/formulation.
 export const productImages: Record<number,{url:string;source:string}> = {
+12:{url:"https://images.matas.dk/trs/wNaN/encode/3348901627375_1_20240220133250.jpg",source:"https://www.matas.dk/dior-miss-dior-blooming-bouquet-eau-de-toilette"},
+13:{url:"https://cdn2.primor.eu/media/catalog/product/3/3/3348901757683_6f8e.jpg",source:"https://www.primor.eu/es_es/dior-miss-dior-essence-esencia-de-perfume-129632.html"},
+45:{url:"https://i5.walmartimages.com/seo/Tom-Ford-Shade-And-Illuminate-Soft-Radiance-Foundation-1oz-11-5-Warm-Nutmeg-New_5d823846-96e2-4beb-889c-71855e12b7c2.cf08fbac2d42669a7c9cc5f3b1e6aa2a.jpeg",source:"https://www.walmart.com/ip/497010297"},
 6:{url:"https://www.adorebeauty.com.au/pim_media/000/516/615/Givenchy_L%27Interdit_Eau_De_Parfum_80ml_002.png?fmt=webp&h=386&w=386",source:"https://www.adorebeauty.com.au/p/givenchy/givenchy-l-interdit-eau-de-parfum-80ml.html"},
 9:{url:"https://media.douglas.hr/media/image/f9/af/86/YSL61634_2_1280x1280%402x.jpg",source:"https://www.douglas.hr/p/yves-saint-laurent-mon-paris-eau-de-parfum-ysl61634"},
 21:{url:"https://www.perfumenz.co.nz/cdn/shop/products/paco-invictus-victory_1400x1400.jpg?v=1627254242",source:"https://www.perfumenz.co.nz/products/invictus-victory-by-paco-rabanne-100ml-edp"},
