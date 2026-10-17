@@ -1,3 +1,4 @@
+import "./style.css";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products } from "@/data/products";
