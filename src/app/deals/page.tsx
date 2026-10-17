@@ -1,3 +1,4 @@
+import "./style.css";
 import Link from "next/link";
 import {cookies} from "next/headers";
 import {products} from "@/data/products";
