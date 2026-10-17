@@ -2,6 +2,7 @@
 import { useMemo, useState } from "react";
 import { ShoppingBag, Search, Menu, X, ArrowRight, Sparkles, ShieldCheck, Truck, Heart } from "lucide-react";
 import { products } from "@/data/products";
+import WelcomeModal from "@/components/WelcomeModal";
 import { getProductImage } from "@/data/product-images";
 
 const money=(n:number)=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(n);
@@ -9,7 +10,7 @@ export default function Home(){
 const [filter,setFilter]=useState("All");const [search,setSearch]=useState("");const [bag,setBag]=useState<number[]>([]);const [mobile,setMobile]=useState(false);const [cartOpen,setCartOpen]=useState(false);
 const filtered=useMemo(()=>products.filter(p=>(filter==="All"||p.category===filter)&&(`${p.brand} ${p.name} ${p.variant}`).toLowerCase().includes(search.toLowerCase())),[filter,search]);
 const total=bag.reduce((s,id)=>s+(products.find(p=>p.id===id)?.price||0),0);
-return <main>
+return <main><WelcomeModal/>
 <div className="announcement">A LITTLE LUXURY, JUST FOR YOU <span>✦</span> WELCOME TO DIONNE’S BOUTIQUE</div>
 <header className="site-header"><button className="icon-btn mobile-menu" onClick={()=>setMobile(!mobile)} aria-label="Toggle menu">{mobile?<X size={22}/>:<Menu size={22}/>}</button><a className="brand" href="#"><span className="bow">🎀</span><span className="brand-name">DIONNE’S</span><span className="brand-line">— B O U T I Q U E —</span></a><nav className={mobile?"nav open":"nav"}><a href="#shop" onClick={()=>{setFilter("All");setMobile(false)}}>Shop All</a><a href="#shop" onClick={()=>{setFilter("Fragrance");setMobile(false)}}>Fragrance</a><a href="#shop" onClick={()=>{setFilter("Makeup");setMobile(false)}}>Beauty</a><a href="#story">Our Story</a></nav><button className="icon-btn bag-button" onClick={()=>setCartOpen(true)} aria-label="Open shopping bag"><ShoppingBag size={20}/><span>{bag.length}</span></button></header>
 <section className="hero"><div className="hero-left"><span className="eyebrow">THE ART OF BEAUTIFUL FINDS</span><span className="small-divider">✧ ─────── ✧</span><h1>Timeless style.<br/><em>Elevated you.</em></h1><p>Discover an exquisite edit of designer fragrances, beautiful beauty essentials, and delightful finds — thoughtfully curated for you.</p><a className="gold-button" href="#shop">EXPLORE THE COLLECTION <ArrowRight size={17}/></a><div className="hero-note">LUXURY BRANDS. BEAUTIFUL PRICES.</div></div><div className="hero-right"><div className="hero-frame"><span className="hero-sparkle">✦</span><div className="art-bow">🎀</div><span className="art-title">The Beauty<br/><i>of a little luxury.</i></span><span className="art-bottom">CURATED WITH LOVE</span></div></div></section>
