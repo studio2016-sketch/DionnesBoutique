@@ -5,7 +5,7 @@ export const dynamic="force-dynamic";
 const origin="https://dionnesboutique.com";
 type BagLine={id:number;quantity:number};
 export async function POST(request:Request){
- if(process.env.CHECKOUT_ENABLED!=="true"||!process.env.STRIPE_SECRET_KEY||!process.env.STRIPE_WEBHOOK_SECRET){
+ if(process.env.CHECKOUT_ENABLED!=="true"||!process.env.STRIPE_SECRET_KEY||!process.env.STRIPE_WEBHOOK_SECRET||process.env.ORDER_FULFILLMENT_READY!=="true"||process.env.SHIPPING_AND_TAX_READY!=="true"){
   return NextResponse.json({error:"Checkout is being prepared and is not available yet."},{status:503});
  }
  const contentType=request.headers.get("content-type")||"";
