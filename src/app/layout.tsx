@@ -6,6 +6,7 @@ export const metadata: Metadata = {
  title:{default:"Dionne’s Boutique | Designer Fragrances & Beauty Finds",template:"%s | Dionne’s Boutique"},
  description:"Discover Dionne’s Boutique’s curated preview of designer fragrances, foundations, concealers and beautiful beauty finds. Timeless Style. Elevated You.",
  applicationName:"Dionne’s Boutique",
+ icons:{icon:"/brand/official-gold-logo.svg",apple:"/brand/official-gold-logo.svg"},
  alternates:{canonical:"/"},
  openGraph:{type:"website",locale:"en_US",url:site,siteName:"Dionne’s Boutique",title:"Dionne’s Boutique | Timeless Style. Elevated You.",description:"Explore curated designer fragrances and beautiful beauty essentials at Dionne’s Boutique."},
  twitter:{card:"summary",title:"Dionne’s Boutique",description:"Timeless Style. Elevated You. Designer fragrance and beauty finds."},
