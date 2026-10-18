@@ -2,6 +2,8 @@
 // Verify image licensing/permission before launch; replace with owner-taken authentic unit photos.
 // DO NOT use a fuzzy name match: the id must correspond to the exact size/formulation.
 export const productImages: Record<number,{url:string;source:string}> = {
+48:{url:"https://media.ulta.com/i/ulta/2613902?h=500&w=500",source:"https://www.ulta.com/p/skin-fetish-sublime-perfection-foundation-pimprod2040434?sku=2613902"},
+69:{url:"https://media.sephora.eu/content/dam/digital/pim/published/B/BENEFIT_COSMETICS/272628/73795-media_swatch.jpg?scaleHeight=750&scaleMode=fit&scaleWidth=750",source:"https://www.sephora.fr/p/mini-they-re-real----mascara-format-voyage-P2134008.html"},
 54:{url:"https://img.pchome.com.tw/cs/items/DDBH2CA900GTBDI/000001_1701999661.jpg",source:"https://www.lauramercier.com/products/translucent-loose-setting-powder"},
 55:{url:"https://alfatah.pk/cdn/shop/files/192608202532_1985ad43-6fa7-4685-98f6-78bc9a026fc2.jpg?v=1721996750",source:"https://alfatah.pk/products/morphe-setting-loose-powder-bake-set-translucent-9g"},
 57:{url:"https://cdn2.jomashop.com/media/catalog/product/cache/fde19e4197824625333be074956e7640/l/o/loose-setting-powder-translucent-by-anastasia-beverly-hills-for-women-09-oz-powder-689304250009.jpg?height=546&width=546",source:"https://www.jomashop.com/loose-setting-powder-translucent-by-anastasia-beverly-hills-for-women-0-9-oz-powder-689304250009.html"},
