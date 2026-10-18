@@ -2,6 +2,11 @@
 // Verify image licensing/permission before launch; replace with owner-taken authentic unit photos.
 // DO NOT use a fuzzy name match: the id must correspond to the exact size/formulation.
 export const productImages: Record<number,{url:string;source:string}> = {
+ 38:{url:"https://media.ulta.com/i/ulta/2640246?fmt=auto&h=800&w=800",source:"https://www.ulta.com/p/born-this-way-undetectable-medium-full-coverage-foundation-pimprod2053446?sku=2640246"},
+ 39:{url:"https://www.tejar.pk/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/t/o/too_faced_born_this_way_natural_finish_foundation_-_maple_-_1_-_tejar.jpg",source:"https://www.tejar.pk/too-faced-born-this-way-natural-finish-foundation-maple"},
+ 42:{url:"https://i.ebayimg.com/images/g/0l0AAOSw-~Vi6t29/s-l1600.jpg",source:"https://www.ebay.com/itm/374200420589"},
+ 43:{url:"https://di2ponv0v5otw.cloudfront.net/posts/2023/08/21/64e3fd39f644e5f61019ffea/m_64e3fd598634cba4280a0d3b.jpg",source:"https://poshmark.com/listing/Chanel-N1-De-Chanel-Revitalizing-Foundation-BR132-BNIB-64e3fd39f644e5f61019ffea"},
+ 44:{url:"https://i.ebayimg.com/images/g/JMwAAeSwYodoj~VO/s-l1200.jpg",source:"https://www.ebay.com/itm/116718554080"},
 12:{url:"https://images.matas.dk/trs/wNaN/encode/3348901627375_1_20240220133250.jpg",source:"https://www.matas.dk/dior-miss-dior-blooming-bouquet-eau-de-toilette"},
 13:{url:"https://cdn2.primor.eu/media/catalog/product/3/3/3348901757683_6f8e.jpg",source:"https://www.primor.eu/es_es/dior-miss-dior-essence-esencia-de-perfume-129632.html"},
 45:{url:"https://i5.walmartimages.com/seo/Tom-Ford-Shade-And-Illuminate-Soft-Radiance-Foundation-1oz-11-5-Warm-Nutmeg-New_5d823846-96e2-4beb-889c-71855e12b7c2.cf08fbac2d42669a7c9cc5f3b1e6aa2a.jpeg",source:"https://www.walmart.com/ip/497010297"},
