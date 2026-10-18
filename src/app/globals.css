@@ -55,3 +55,33 @@
 /* When a remote product image fails, do not keep labeling its placeholder as a photograph. */
 .product-art:has(.catalog-photo-fallback)>.thumbnail-label{font-size:0}
 .product-art:has(.catalog-photo-fallback)>.thumbnail-label:after{content:"PHOTO PENDING";font-size:8px}
+
+/* Storefront finishing details: predictable cards, comfortable interactions and keyboard focus */
+:where(a,button,input):focus-visible{outline:2px solid #9c713b;outline-offset:4px}
+.product-card{display:flex;flex-direction:column;min-width:0}
+.product-meta{display:flex;flex-direction:column;flex:1}
+.product-meta h3{overflow-wrap:break-word}
+.product-meta .price-row{margin-top:auto;padding-top:15px}
+.product-art{isolation:isolate;overflow:hidden}
+.product-art-link{position:absolute;inset:0;z-index:1}
+.product-art:has(.product-photo) .product-photo{transition:transform .28s ease}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.product-art:has(.product-photo):hover .product-photo{transform:scale(1.035)}}
+.filters button{min-height:44px}
+.search input{min-height:44px}
+.product-meta .price-row button{min-height:44px;white-space:nowrap}
+.nav.open a,.nav.open button{min-height:44px;display:flex;align-items:center}
+html{scroll-padding-top:20px}
+@media(max-width:650px){
+ .product-grid{row-gap:27px;column-gap:14px}
+ .product-meta{padding:15px 1px 5px}
+ .product-meta h3{font-size:clamp(21px,5.7vw,27px);line-height:1.06}
+ .product-meta p{min-height:0;line-height:1.5}
+ .price-row{flex-wrap:wrap;align-items:flex-start}
+ .price-row button{width:100%;text-align:center}
+ .product-art{height:clamp(172px,52vw,250px)}
+ .product-photo{padding:15px 10px 32px}
+ .nav.open{align-items:stretch;gap:2px;padding:15px 22px}
+ .nav.open a,.nav.open button{width:100%;border-bottom:1px solid #eee2d2}
+ .site-header .official-logo{object-position:center}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.product-photo{transition:none!important}}
