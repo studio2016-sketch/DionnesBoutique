@@ -2,6 +2,9 @@
 // Verify image licensing/permission before launch; replace with owner-taken authentic unit photos.
 // DO NOT use a fuzzy name match: the id must correspond to the exact size/formulation.
 export const productImages: Record<number,{url:string;source:string}> = {
+47:{url:"/products/user-tom-ford-12-5-walnut.svg",source:"User-supplied product photograph"},
+49:{url:"/products/user-fenty-soft-matte-506w.svg",source:"User-supplied product photograph"},
+50:{url:"/products/user-fenty-soft-matte-536w.svg",source:"User-supplied product photograph"},
 46:{url:"https://media.neimanmarcus.com/f_auto%2Cq_auto%2Cb_auto%2Cc_pad/w_1200%2Ch_1500/01/nm_3553784_100244_m",source:"https://modesens.com/product/tom-ford-1-oz-shade-and-illuminate-soft-radiance-foundation-spf-50-117-nutmeg-71275313/"},
 15:{url:"https://www.sephora.com.mx/on/demandware.static/-/Sites-masterCatalog_Sephora/es_MX/dw46435e32/images/hi-res/boletos/Frida/CAROLINA%20HERRERA/8411061077160_2.jpg",source:"https://www.carolinaherrera.com/us/en/p-fragrance/labomba?sku=000000000065195954"},
 16:{url:"https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/dior/7003545/0/bSxeCCEDtC-1_Product_190418-Dior-Miss-Dior-Absolutely-Blooming-Eau-De-Parfum-100ml_66c061c99d7b3be1e8effb8811532a26d7e5e87d_1555309308.png",source:"https://sephora.in/product/dior-miss-dior-absolutely-blooming-eau-de-parfum-v-100ml"},
