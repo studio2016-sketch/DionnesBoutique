@@ -2,6 +2,9 @@
 // Verify image licensing/permission before launch; replace with owner-taken authentic unit photos.
 // DO NOT use a fuzzy name match: the id must correspond to the exact size/formulation.
 export const productImages: Record<number,{url:string;source:string}> = {
+54:{url:"https://img.pchome.com.tw/cs/items/DDBH2CA900GTBDI/000001_1701999661.jpg",source:"https://www.lauramercier.com/products/translucent-loose-setting-powder"},
+55:{url:"https://alfatah.pk/cdn/shop/files/192608202532_1985ad43-6fa7-4685-98f6-78bc9a026fc2.jpg?v=1721996750",source:"https://alfatah.pk/products/morphe-setting-loose-powder-bake-set-translucent-9g"},
+57:{url:"https://cdn2.jomashop.com/media/catalog/product/cache/fde19e4197824625333be074956e7640/l/o/loose-setting-powder-translucent-by-anastasia-beverly-hills-for-women-09-oz-powder-689304250009.jpg?height=546&width=546",source:"https://www.jomashop.com/loose-setting-powder-translucent-by-anastasia-beverly-hills-for-women-0-9-oz-powder-689304250009.html"},
  38:{url:"https://media.ulta.com/i/ulta/2640246?fmt=auto&h=800&w=800",source:"https://www.ulta.com/p/born-this-way-undetectable-medium-full-coverage-foundation-pimprod2053446?sku=2640246"},
  39:{url:"https://www.tejar.pk/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/t/o/too_faced_born_this_way_natural_finish_foundation_-_maple_-_1_-_tejar.jpg",source:"https://www.tejar.pk/too-faced-born-this-way-natural-finish-foundation-maple"},
  42:{url:"https://i.ebayimg.com/images/g/0l0AAOSw-~Vi6t29/s-l1600.jpg",source:"https://www.ebay.com/itm/374200420589"},
