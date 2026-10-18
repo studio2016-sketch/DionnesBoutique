@@ -127,3 +127,29 @@ html{scroll-padding-top:20px}
  .welcome-dialog{max-height:92dvh}
  .welcome-copy{font-size:14px;line-height:1.6}
 }
+
+/* Final mobile header correction: substantially enlarge the ACTUAL logo artwork,
+   preserve both the original graphic and centered menu/bag alignment. */
+@media (max-width:650px){
+ .site-header{
+   height:120px;min-height:120px;
+   display:grid;grid-template-columns:44px minmax(0,1fr) 44px;
+   gap:4px;align-items:center;padding:4px 12px;
+ }
+ .site-header>.brand{
+   width:100%;max-width:none;min-width:0;height:112px;
+   justify-self:stretch;align-self:center;overflow:visible;
+   display:flex;align-items:center;justify-content:center;
+ }
+ .site-header .official-logo{
+   display:block;width:min(100%,300px);max-width:300px;
+   height:110px;object-fit:contain;object-position:center;
+   margin:0 auto;filter:none;
+ }
+ .site-header>.icon-btn{width:44px;height:44px;padding:8px}
+ .site-header .nav{top:120px}
+}
+@media(min-width:651px) and (max-width:1050px){
+ .site-header .official-logo{width:215px;height:104px}
+ .site-header .brand{min-width:210px}
+}
