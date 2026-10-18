@@ -1,3 +1,14 @@
+# Missing-item names transcribed directly from supplied site screenshot (PDF, 18 Oct 2026)
+
+These four listing tiles visibly say PHOTO PENDING in the supplied screenshot. Titles are transcribed using the brand, product title, and variant exactly as displayed (line wraps removed, capitalization retained):
+
+1. **Tom Ford — Shade & Illuminate Soft Radiance Foundation SPF 50 — 12.5 Walnut · 30 mL / 1.0 fl oz** (image pending, $75).
+2. **Benefit — Boi-ing Concealer (Mini) — 3E01** (image pending, $15).
+3. **Fenty Beauty — Pro Filt'r Soft Matte Foundation — 506W** (image pending, $38).
+4. **Fenty Beauty — Pro Filt'r Soft Matte Foundation — 536W** (image pending, $38).
+
+These are the four missing-image labels **visible** in that PDF, not proof that only four are missing from the complete catalog. Two more unassigned catalog IDs are **58** (Unspecified Additional Setting Powder) and **65** (Tarte Shape Tape Concealer Mini, Rich Caramel); their cards are not shown in the provided PDF crop. Never claim the screenshot displays these.
+
 # Product image completion tracker — 2026-10-18
 
 The 69-SKU boutique catalog uses `src/data/product-images.ts` for temporary third-party product-reference imagery. A reference assignment does not guarantee the URL resolves, matches the user's physical merchandise, or has rights clearance. Replace with owner-provided/licensed product photography before enabling checkout.
