@@ -51,3 +51,7 @@
  .hero-official-logo{width:min(72%,230px);height:185px}
  .welcome-official-logo{height:76px;width:112px;margin:-12px auto 0}
 }
+
+/* When a remote product image fails, do not keep labeling its placeholder as a photograph. */
+.product-art:has(.catalog-photo-fallback)>.thumbnail-label{font-size:0}
+.product-art:has(.catalog-photo-fallback)>.thumbnail-label:after{content:"PHOTO PENDING";font-size:8px}
