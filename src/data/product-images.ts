@@ -2,6 +2,21 @@
 // Verify image licensing/permission before launch; replace with owner-taken authentic unit photos.
 // DO NOT use a fuzzy name match: the id must correspond to the exact size/formulation.
 export const productImages: Record<number,{url:string;source:string}> = {
+30:{url:"https://www.gosupps.com/media/catalog/product/cache/25/image/1500x/040ec09b1e35df139433887a97daa66f/6/1/61j_UzCaxEL.jpg",source:"https://www.gosupps.com/senegence-lipsense-liquid-lip-color-first-love-0-25-oz.html"},
+31:{url:"https://www.gosupps.com/media/catalog/product/5/1/51Hxu6-CgPL.jpg",source:"https://www.gosupps.com/senegence-lipsense-liquid-lip-color-mauve-ice-0-25-oz.html"},
+32:{url:"https://cdn.shoplightspeed.com/shops/637769/files/26043234/1652x1652x2/senegence-lipsense-bombshell.jpg",source:"https://www.shopmandf.com/sng-1218-bombshell-lipsense.html"},
+33:{url:"https://i5.walmartimages.com/seo/SeneGence-LipSense-Liquid-Lip-Color-Waterproof-Makeup-Longwear-Smudge-Proof-Color-Apple-Cider-0-25-fl-oz_cc5d9c2b-d4c4-4ac5-b006-916dca9a481e.1cebb602a9e826ec6ed88d6bdcd8c7f5.jpeg",source:"https://www.walmart.com/ip/1533850845"},
+34:{url:"https://di2ponv0v5otw.cloudfront.net/posts/2025/09/28/68d9cd7ae2ac0ce0dd98d556/m_68f97859310f1c03195b0c67.jpeg",source:"https://poshmark.com/listing/LipSense-by-SeneGence-LongLasting-Lip-Color-Nude-68d9cd7ae2ac0ce0dd98d556"},
+35:{url:"https://i.ebayimg.com/images/g/hLUAAOSwF4RnIRFL/s-l1200.png",source:"https://www.ebay.com/itm/404826255734"},
+36:{url:"https://www.tejar.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/o/too_faced_born_this_way_ethereal_light_illuminating_smoothing_concealer_-_hot_cocoa_-_tejar.jpg",source:"https://www.tejar.com/too-faced-born-this-way-ethereal-light-illuminating-smoothing-concealer-hot-cocoa"},
+59:{url:"https://dy6g3i6a1660s.cloudfront.net/hW2NGoKEIiyAV9qcAc-4DQR-BH4/prod_p-aa/hourglass-vanish-airbrush-concealer-10-brandy.jpg",source:"https://www.beautylish.com/s/hourglass-vanish-airbrush-concealer-10-brandy"},
+61:{url:"https://media.ulta.com/i/ulta/2627435?fmt=auto&h=800&w=800",source:"https://www.ulta.com/p/travel-size-born-this-way-super-coverage-multi-use-concealer-pimprod2046524?sku=2627435"},
+60:{url:"https://media.ulta.com/i/ulta/2627439?fmt=auto&h=800&w=800",source:"https://www.ulta.com/p/travel-size-born-this-way-super-coverage-multi-use-concealer-pimprod2046524?sku=2627439"},
+68:{url:"https://static.beautytocare.com/cdn-cgi/image/width%3D1600%2Cheight%3D1600%2Cf%3Dauto/media/catalog/product/n/a/nars-cosmetics-mini-radiant-creamy-concealer-caramel-med-dark-2-1-4ml.jpg",source:"https://www.caretobeauty.com/ca/nars-cosmetics-mini-radiant-creamy-concealer-caramel-med-dark-2-1-4ml/"},
+51:{url:"https://media.ulta.com/i/ulta/2644417?fmt=auto&h=800&w=800",source:"https://www.ulta.com/p/airbrush-flawless-foundation-pimprod2054180?sku=2644417"},
+53:{url:"https://lyko.com/globalassets/product-images/lancome-teint-idole-ultra-wear-24h-longwear-foundation-535n-2065-813-0032_2.jpg?format=jpg&h=960&mode=max&quality=75&w=960",source:"https://lyko.com/en/lancome/lancome-teint-idole-fond-de-teint-535n"},
+40:{url:"https://media.ulta.com/i/ulta/2627319?fmt=auto&h=800&w=800",source:"https://www.ulta.com/p/born-this-way-soft-matte-foundation-pimprod2046210?sku=2627319"},
+41:{url:"https://media.ulta.com/i/ulta/2627317?fmt=auto&h=800&w=800",source:"https://www.ulta.com/p/born-this-way-soft-matte-foundation-pimprod2046210?sku=2627317"},
 48:{url:"https://media.ulta.com/i/ulta/2613902?h=500&w=500",source:"https://www.ulta.com/p/skin-fetish-sublime-perfection-foundation-pimprod2040434?sku=2613902"},
 69:{url:"https://media.sephora.eu/content/dam/digital/pim/published/B/BENEFIT_COSMETICS/272628/73795-media_swatch.jpg?scaleHeight=750&scaleMode=fit&scaleWidth=750",source:"https://www.sephora.fr/p/mini-they-re-real----mascara-format-voyage-P2134008.html"},
 54:{url:"https://img.pchome.com.tw/cs/items/DDBH2CA900GTBDI/000001_1701999661.jpg",source:"https://www.lauramercier.com/products/translucent-loose-setting-powder"},
