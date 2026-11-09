@@ -56,3 +56,18 @@ export async function POST(request:Request){
   return NextResponse.json({url:data.url},{headers:{"Cache-Control":"no-store"}});
  }catch{return NextResponse.json({error:"Checkout temporarily unavailable."},{status:502})}
 }
+
+export async function GET(){
+ try{
+  await verifiedBoutiqueStripeKey();
+  return NextResponse.json({
+   stripeConnected:true,
+   checkoutEnabled:process.env.CHECKOUT_ENABLED==="true",
+   webhookConfigured:Boolean(process.env.STRIPE_WEBHOOK_SECRET),
+   fulfillmentConfigured:process.env.ORDER_FULFILLMENT_READY==="true",
+   shippingAndTaxConfigured:process.env.SHIPPING_AND_TAX_READY==="true"
+  },{headers:{"Cache-Control":"no-store, private"}});
+ }catch{
+  return NextResponse.json({stripeConnected:false,error:"Stripe connection could not be verified."},{status:503,headers:{"Cache-Control":"no-store, private"}});
+ }
+}
