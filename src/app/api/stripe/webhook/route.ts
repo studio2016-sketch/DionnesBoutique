@@ -1,5 +1,6 @@
 import {NextResponse} from "next/server";
 import {neon} from "@neondatabase/serverless";
+import {recordPaidBoutiqueOrder} from "@/lib/stripe-orders";
 import {verifyCheckoutEvent} from "@/lib/stripe-webhook";
 
 export const runtime="nodejs";
@@ -24,6 +25,10 @@ export async function POST(req:Request){
   await sql`INSERT INTO public.stripe_checkout_events(account_id,event_id,session_id,event_type,event_created_at,payment_state,amount_total,currency)
    VALUES(${receipt.accountId},${receipt.eventId},${receipt.sessionId},${receipt.eventType},${receipt.eventCreatedAt}::timestamptz,${receipt.paymentState},${receipt.amountTotal},${receipt.currency})
    ON CONFLICT(account_id,event_id) DO NOTHING`;
+  const current=await sql`SELECT processing_status FROM public.stripe_checkout_events WHERE account_id=${receipt.accountId} AND event_id=${receipt.eventId}`;
+  if(current[0]?.processing_status==="PROCESSED")return NextResponse.json({received:true},{headers});
+  if(receipt.paymentState==="PAID")await recordPaidBoutiqueOrder(receipt.sessionId);
+  await sql`UPDATE public.stripe_checkout_events SET processing_status='PROCESSED' WHERE account_id=${receipt.accountId} AND event_id=${receipt.eventId}`;
   return NextResponse.json({received:true},{headers});
  }catch{
   return NextResponse.json({error:"Event storage unavailable. Retry delivery."},{status:500,headers});
