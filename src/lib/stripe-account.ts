@@ -1,4 +1,4 @@
-const boutiqueAccountId="acct_1UZh0B0yHQiI07GK";
+export const boutiqueAccountId="acct_1UZh0B0yHQiI07GK";
 
 export async function verifiedBoutiqueStripeKey(){
  const key=process.env.STRIPE_SECRET_KEY;
