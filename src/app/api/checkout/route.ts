@@ -49,6 +49,7 @@ export async function POST(request:Request){
   const settings=await checkoutCommerceSettings(key);
   params.set("automatic_tax[enabled]","true");
   params.set("shipping_options[0][shipping_rate_data][type]","fixed_amount");
+  params.set("shipping_options[0][shipping_rate_data][tax_behavior]","exclusive");
   params.set("shipping_options[0][shipping_rate_data][fixed_amount][amount]",String(settings.shippingCents));
   params.set("shipping_options[0][shipping_rate_data][fixed_amount][currency]","usd");
   params.set("shipping_options[0][shipping_rate_data][display_name]","US delivery");
