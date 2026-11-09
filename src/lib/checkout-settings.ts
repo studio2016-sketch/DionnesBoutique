@@ -7,11 +7,11 @@ export async function checkoutCommerceSettings(key:string){
  const {settings:s}=await response.json();
  if(!s?.shippingEnabled||s.taxMode!=="AUTOMATIC"||!Number.isSafeInteger(s.shippingCents)||s.shippingCents<0||s.shippingCents>100000||
   !Number.isSafeInteger(s.minDays)||!Number.isSafeInteger(s.maxDays)||s.minDays<1||s.maxDays<s.minDays||s.maxDays>60||
-  !/^txcd_[0-9]{8}$/.test(s.taxCode)||!["exclusive","inclusive"].includes(s.taxBehavior))throw new Error("Shipping and tax setup is incomplete.");
+  !/^txcd_[0-9]{8}$/.test(s.taxCode)||s.taxBehavior!=="exclusive")throw new Error("Shipping and tax setup is incomplete.");
  const client=new Stripe(key),tax=await client.tax.settings.retrieve();
  let registered=false;
  for await(const registration of client.tax.registrations.list({status:"active",limit:100})){if(registration.country==="US")registered=true;}
  if(tax.status!=="active"||!registered)throw new Error("Tax registration is not ready.");
  await client.taxCodes.retrieve(s.taxCode);
- return s as {shippingCents:number;minDays:number;maxDays:number;taxCode:string;taxBehavior:"inclusive"|"exclusive"};
+ return s as {shippingCents:number;minDays:number;maxDays:number;taxCode:string;taxBehavior:"exclusive"};
 }
