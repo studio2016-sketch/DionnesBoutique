@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { products } from "@/data/products";
+import { verifiedBoutiqueStripeKey } from "@/lib/stripe-account";
 export const runtime="nodejs";
 export const dynamic="force-dynamic";
 const origin="https://dionnesboutique.com";
@@ -43,8 +44,9 @@ export async function POST(request:Request){
   params.set(`line_items[${i}][price_data][product_data][metadata][product_id]`,String(line.product.id));
  });
  try{
+  const key=await verifiedBoutiqueStripeKey();
   const response=await fetch("https://api.stripe.com/v1/checkout/sessions",{
-   method:"POST",headers:{Authorization:`Bearer ${process.env.STRIPE_SECRET_KEY}`,"Content-Type":"application/x-www-form-urlencoded", "Idempotency-Key":crypto.randomUUID()},body:params.toString(),cache:"no-store"
+   method:"POST",headers:{Authorization:`Bearer ${key}`,"Content-Type":"application/x-www-form-urlencoded", "Idempotency-Key":crypto.randomUUID()},body:params.toString(),cache:"no-store",signal:AbortSignal.timeout(15000)
   });
   const data=await response.json();
   if(!response.ok||typeof data.url!=="string"||!data.url.startsWith("https://checkout.stripe.com/")){
