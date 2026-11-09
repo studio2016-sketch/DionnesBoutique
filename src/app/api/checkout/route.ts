@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { products } from "@/data/products";
+import {checkoutCommerceSettings} from "@/lib/checkout-settings";
 import { verifiedBoutiqueStripeKey } from "@/lib/stripe-account";
 export const runtime="nodejs";
 export const dynamic="force-dynamic";
 const origin="https://dionnesboutique.com";
 type BagLine={id:number;quantity:number};
 export async function POST(request:Request){
- if(process.env.CHECKOUT_ENABLED!=="true"||!process.env.STRIPE_SECRET_KEY||!process.env.STRIPE_WEBHOOK_SECRET||process.env.ORDER_FULFILLMENT_READY!=="true"||process.env.SHIPPING_AND_TAX_READY!=="true"){
+ if(process.env.CHECKOUT_ENABLED!=="true"||!process.env.STRIPE_SECRET_KEY||!process.env.STRIPE_WEBHOOK_SECRET||process.env.ORDER_FULFILLMENT_READY!=="true"){
   return NextResponse.json({error:"Checkout is being prepared and is not available yet."},{status:503});
  }
  const contentType=request.headers.get("content-type")||"";
@@ -45,6 +46,20 @@ export async function POST(request:Request){
  });
  try{
   const key=await verifiedBoutiqueStripeKey();
+  const settings=await checkoutCommerceSettings(key);
+  params.set("automatic_tax[enabled]","true");
+  params.set("shipping_options[0][shipping_rate_data][type]","fixed_amount");
+  params.set("shipping_options[0][shipping_rate_data][fixed_amount][amount]",String(settings.shippingCents));
+  params.set("shipping_options[0][shipping_rate_data][fixed_amount][currency]","usd");
+  params.set("shipping_options[0][shipping_rate_data][display_name]","US delivery");
+  params.set("shipping_options[0][shipping_rate_data][delivery_estimate][minimum][unit]","business_day");
+  params.set("shipping_options[0][shipping_rate_data][delivery_estimate][minimum][value]",String(settings.minDays));
+  params.set("shipping_options[0][shipping_rate_data][delivery_estimate][maximum][unit]","business_day");
+  params.set("shipping_options[0][shipping_rate_data][delivery_estimate][maximum][value]",String(settings.maxDays));
+  items.forEach((_line,i)=>{
+   params.set(`line_items[${i}][price_data][product_data][tax_code]`,settings.taxCode);
+   params.set(`line_items[${i}][price_data][tax_behavior]`,settings.taxBehavior);
+  });
   const response=await fetch("https://api.stripe.com/v1/checkout/sessions",{
    method:"POST",headers:{Authorization:`Bearer ${key}`,"Content-Type":"application/x-www-form-urlencoded", "Idempotency-Key":crypto.randomUUID()},body:params.toString(),cache:"no-store",signal:AbortSignal.timeout(15000)
   });
@@ -59,14 +74,16 @@ export async function POST(request:Request){
 
 export async function GET(){
  try{
-  await verifiedBoutiqueStripeKey();
+  const key=await verifiedBoutiqueStripeKey();
+  let shippingAndTaxConfigured=false;
+  try{await checkoutCommerceSettings(key);shippingAndTaxConfigured=true;}catch{}
   return NextResponse.json({
    stripeConnected:true,
    checkoutEnabled:process.env.CHECKOUT_ENABLED==="true",
    webhookConfigured:Boolean(process.env.STRIPE_WEBHOOK_SECRET),
    orderRecordingConfigured:Boolean(process.env.BOUTIQUE_ORDER_SYNC_SECRET),
    fulfillmentConfigured:process.env.ORDER_FULFILLMENT_READY==="true",
-   shippingAndTaxConfigured:process.env.SHIPPING_AND_TAX_READY==="true"
+   shippingAndTaxConfigured
   },{headers:{"Cache-Control":"no-store, private"}});
  }catch{
   return NextResponse.json({stripeConnected:false,error:"Stripe connection could not be verified."},{status:503,headers:{"Cache-Control":"no-store, private"}});
