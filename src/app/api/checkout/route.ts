@@ -75,15 +75,15 @@ export async function POST(request:Request){
 export async function GET(){
  try{
   const key=await verifiedBoutiqueStripeKey();
-  let shippingAndTaxConfigured=false;
-  try{await checkoutCommerceSettings(key);shippingAndTaxConfigured=true;}catch{}
+  let shippingAndTaxConfigured=false;\n  let shippingSettingsConnected=false;
+  try{await checkoutCommerceSettings(key);shippingAndTaxConfigured=true;shippingSettingsConnected=true;}catch(error){shippingSettingsConnected=error instanceof Error&&["Shipping and tax setup is incomplete.","Tax registration is not ready."].includes(error.message);}
   return NextResponse.json({
    stripeConnected:true,
    checkoutEnabled:process.env.CHECKOUT_ENABLED==="true",
    webhookConfigured:Boolean(process.env.STRIPE_WEBHOOK_SECRET),
    orderRecordingConfigured:Boolean(process.env.BOUTIQUE_ORDER_SYNC_SECRET),
    fulfillmentConfigured:process.env.ORDER_FULFILLMENT_READY==="true",
-   shippingAndTaxConfigured
+   shippingSettingsConnected,\n   shippingAndTaxConfigured
   },{headers:{"Cache-Control":"no-store, private"}});
  }catch{
   return NextResponse.json({stripeConnected:false,error:"Stripe connection could not be verified."},{status:503,headers:{"Cache-Control":"no-store, private"}});
