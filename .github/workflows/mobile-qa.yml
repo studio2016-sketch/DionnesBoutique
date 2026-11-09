@@ -13,8 +13,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-          cache: npm
       - run: npm install --no-audit --no-fund
+      - name: Verify paid-order safety and commerce prerequisites
+        run: |
+          node tests/stripe-webhook.cjs
+          node tests/stripe-orders.cjs
+          node tests/checkout-settings.cjs
+          npx tsc --noEmit
       - run: npx playwright install --with-deps chromium
       - run: npm run build
       - name: Start local website

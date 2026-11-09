@@ -29,6 +29,11 @@ export async function recordPaidBoutiqueOrder(sessionId:string){
  });
  if(!response.ok)throw new Error("Order recording failed.");
  const order=await response.json();
- if(!order.id||!["READY","REVIEW"].includes(order.status))throw new Error("Invalid order acknowledgement.");
+ // A delayed delivery can replay an order after fulfillment. A shipped replay
+ // is durable success, while contradictory acknowledgements must stay retryable.
+ if(!order||typeof order.id!=="string"||!order.id.trim()||typeof order.duplicate!=="boolean"||
+  !["READY","REVIEW","SHIPPED"].includes(order.status)||
+  order.stockApplied!==(order.status!=="REVIEW")||
+  (order.status==="SHIPPED"&&order.duplicate!==true))throw new Error("Invalid order acknowledgement.");
  return order;
 }
