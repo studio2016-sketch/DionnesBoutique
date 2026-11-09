@@ -64,6 +64,7 @@ export async function GET(){
    stripeConnected:true,
    checkoutEnabled:process.env.CHECKOUT_ENABLED==="true",
    webhookConfigured:Boolean(process.env.STRIPE_WEBHOOK_SECRET),
+   orderRecordingConfigured:Boolean(process.env.BOUTIQUE_ORDER_SYNC_SECRET),
    fulfillmentConfigured:process.env.ORDER_FULFILLMENT_READY==="true",
    shippingAndTaxConfigured:process.env.SHIPPING_AND_TAX_READY==="true"
   },{headers:{"Cache-Control":"no-store, private"}});
