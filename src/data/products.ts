@@ -11,7 +11,7 @@ export const products: Product[] = [
     "variant": "EDT 100 mL",
     "stock": 1,
     "price": 55,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@ export const products: Product[] = [
     "variant": "EDP 80 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 3,
@@ -31,7 +31,7 @@ export const products: Product[] = [
     "variant": "EDP Intense 90 mL",
     "stock": 2,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@ export const products: Product[] = [
     "variant": "EDP 90 mL",
     "stock": 2,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 5,
@@ -51,7 +51,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 4,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 6,
@@ -61,7 +61,7 @@ export const products: Product[] = [
     "variant": "EDP 80 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 7,
@@ -71,7 +71,7 @@ export const products: Product[] = [
     "variant": "EDP 90 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 8,
@@ -81,7 +81,7 @@ export const products: Product[] = [
     "variant": "EDP 90 mL",
     "stock": 2,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 9,
@@ -91,7 +91,7 @@ export const products: Product[] = [
     "variant": "EDP 90 mL",
     "stock": 3,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 10,
@@ -101,7 +101,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 11,
@@ -111,7 +111,7 @@ export const products: Product[] = [
     "variant": "EDT 100 mL",
     "stock": 1,
     "price": 65,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 12,
@@ -121,7 +121,7 @@ export const products: Product[] = [
     "variant": "EDT 100 mL",
     "stock": 1,
     "price": 65,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 13,
@@ -131,7 +131,7 @@ export const products: Product[] = [
     "variant": "EDP 80 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 14,
@@ -141,7 +141,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 15,
@@ -151,7 +151,7 @@ export const products: Product[] = [
     "variant": "EDP 80 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 16,
@@ -161,7 +161,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 17,
@@ -171,7 +171,7 @@ export const products: Product[] = [
     "variant": "EDT 100 mL",
     "stock": 2,
     "price": 65,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 18,
@@ -181,7 +181,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 19,
@@ -191,7 +191,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 20,
@@ -201,7 +201,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 1,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 21,
@@ -211,7 +211,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 1,
     "price": 55,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 22,
@@ -221,7 +221,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 1,
     "price": 65,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 23,
@@ -231,7 +231,7 @@ export const products: Product[] = [
     "variant": "EDT 90 mL",
     "stock": 2,
     "price": 65,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 24,
@@ -241,7 +241,7 @@ export const products: Product[] = [
     "variant": "EDT 100 mL",
     "stock": 1,
     "price": 65,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 25,
@@ -251,7 +251,7 @@ export const products: Product[] = [
     "variant": "EDT 125 mL",
     "stock": 1,
     "price": 65,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 26,
@@ -261,7 +261,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 3,
     "price": 100,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 27,
@@ -271,7 +271,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 2,
     "price": 100,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 28,
@@ -281,7 +281,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 2,
     "price": 100,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 29,
@@ -291,7 +291,7 @@ export const products: Product[] = [
     "variant": "EDP 100 mL",
     "stock": 1,
     "price": 100,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 30,
@@ -301,7 +301,7 @@ export const products: Product[] = [
     "variant": "First Love · .25 fl oz / 7.39 mL",
     "stock": 2,
     "price": 12,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 31,
@@ -311,7 +311,7 @@ export const products: Product[] = [
     "variant": "Mauve Ice · .25 fl oz / 7.39 mL",
     "stock": 2,
     "price": 12,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 32,
@@ -321,7 +321,7 @@ export const products: Product[] = [
     "variant": "Bombshell · .25 fl oz / 7.39 mL",
     "stock": 2,
     "price": 12,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 33,
@@ -331,7 +331,7 @@ export const products: Product[] = [
     "variant": "Apple Cider · .25 fl oz / 7.39 mL",
     "stock": 2,
     "price": 12,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 34,
@@ -341,7 +341,7 @@ export const products: Product[] = [
     "variant": "Nude · .25 fl oz / 7.39 mL",
     "stock": 2,
     "price": 12,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 35,
@@ -351,7 +351,7 @@ export const products: Product[] = [
     "variant": "Espresso · 5 mL / .16 fl oz",
     "stock": 1,
     "price": 15,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 36,
@@ -361,7 +361,7 @@ export const products: Product[] = [
     "variant": "Hot Cocoa · 5 mL / .16 fl oz",
     "stock": 1,
     "price": 15,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 37,
@@ -371,7 +371,7 @@ export const products: Product[] = [
     "variant": "Caramel · 30 mL / 1.0 fl oz",
     "stock": 1,
     "price": 24,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 38,
@@ -381,7 +381,7 @@ export const products: Product[] = [
     "variant": "Butter Pecan · 30 mL / 1.0 fl oz",
     "stock": 1,
     "price": 24,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 39,
@@ -391,7 +391,7 @@ export const products: Product[] = [
     "variant": "Maple · 30 mL / 1.0 fl oz",
     "stock": 2,
     "price": 24,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 40,
@@ -401,7 +401,7 @@ export const products: Product[] = [
     "variant": "Sable · 30 mL / 1.0 fl oz",
     "stock": 2,
     "price": 24,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 41,
@@ -411,7 +411,7 @@ export const products: Product[] = [
     "variant": "Tiramisu · 30 mL / 1.0 fl oz",
     "stock": 2,
     "price": 24,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 42,
@@ -421,7 +421,7 @@ export const products: Product[] = [
     "variant": "BD121 · 30 mL / 1.0 fl oz",
     "stock": 2,
     "price": 40,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 43,
@@ -431,7 +431,7 @@ export const products: Product[] = [
     "variant": "BR132 · 30 mL / 1.0 fl oz",
     "stock": 2,
     "price": 40,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 44,
@@ -441,7 +441,7 @@ export const products: Product[] = [
     "variant": "B110 · 30 mL / 1.0 fl oz",
     "stock": 1,
     "price": 40,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 45,
@@ -451,7 +451,7 @@ export const products: Product[] = [
     "variant": "11.5 Warm Nutmeg · 30 mL / 1.0 fl oz",
     "stock": 2,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 46,
@@ -461,7 +461,7 @@ export const products: Product[] = [
     "variant": "11.7 Nutmeg · 30 mL / 1.0 fl oz",
     "stock": 2,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 47,
@@ -471,7 +471,7 @@ export const products: Product[] = [
     "variant": "12.5 Walnut · 30 mL / 1.0 fl oz",
     "stock": 2,
     "price": 75,
-    "condition": "New — verify before launch"
+    "condition": "New in box"
   },
   {
     "id": 48,
@@ -481,7 +481,7 @@ export const products: Product[] = [
     "variant": "Med Deep 25",
     "stock": 1,
     "price": 40,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 49,
@@ -491,7 +491,7 @@ export const products: Product[] = [
     "variant": "506W",
     "stock": 1,
     "price": 38,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 50,
@@ -501,7 +501,7 @@ export const products: Product[] = [
     "variant": "536W",
     "stock": 1,
     "price": 38,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 51,
@@ -511,7 +511,7 @@ export const products: Product[] = [
     "variant": "13 Neutral",
     "stock": 1,
     "price": 40,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 52,
@@ -521,7 +521,7 @@ export const products: Product[] = [
     "variant": "525W",
     "stock": 1,
     "price": 40,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 53,
@@ -531,7 +531,7 @@ export const products: Product[] = [
     "variant": "535N",
     "stock": 1,
     "price": 40,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 54,
@@ -541,7 +541,7 @@ export const products: Product[] = [
     "variant": "",
     "stock": 1,
     "price": 20,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 55,
@@ -551,7 +551,7 @@ export const products: Product[] = [
     "variant": "",
     "stock": 1,
     "price": 20,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 56,
@@ -561,7 +561,7 @@ export const products: Product[] = [
     "variant": "",
     "stock": 1,
     "price": 20,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 57,
@@ -571,7 +571,7 @@ export const products: Product[] = [
     "variant": "",
     "stock": 1,
     "price": 20,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 58,
@@ -581,7 +581,7 @@ export const products: Product[] = [
     "variant": "Brand/shade not specified",
     "stock": 1,
     "price": 10,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 59,
@@ -591,7 +591,7 @@ export const products: Product[] = [
     "variant": "Brandy",
     "stock": 1,
     "price": 22,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 60,
@@ -601,7 +601,7 @@ export const products: Product[] = [
     "variant": "Cocoa",
     "stock": 1,
     "price": 15,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 61,
@@ -611,7 +611,7 @@ export const products: Product[] = [
     "variant": "Chestnut",
     "stock": 1,
     "price": 15,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 62,
@@ -621,7 +621,7 @@ export const products: Product[] = [
     "variant": "3E01",
     "stock": 1,
     "price": 15,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 63,
@@ -631,7 +631,7 @@ export const products: Product[] = [
     "variant": "Rich Honey",
     "stock": 2,
     "price": 15,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 64,
@@ -641,7 +641,7 @@ export const products: Product[] = [
     "variant": "Rich Natural",
     "stock": 1,
     "price": 15,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 65,
@@ -651,7 +651,7 @@ export const products: Product[] = [
     "variant": "Rich Caramel",
     "stock": 1,
     "price": 15,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 66,
@@ -661,7 +661,7 @@ export const products: Product[] = [
     "variant": "55W",
     "stock": 1,
     "price": 15,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 67,
@@ -671,7 +671,7 @@ export const products: Product[] = [
     "variant": "Med Deep 4",
     "stock": 1,
     "price": 15,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 68,
@@ -681,7 +681,7 @@ export const products: Product[] = [
     "variant": "Med Deep 2.6",
     "stock": 1,
     "price": 15,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   },
   {
     "id": 69,
@@ -691,6 +691,6 @@ export const products: Product[] = [
     "variant": "",
     "stock": 4,
     "price": 12,
-    "condition": "Open box — pending hygiene/condition review"
+    "condition": "Open box — already reduced"
   }
 ];
