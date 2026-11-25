@@ -12,7 +12,7 @@ export async function GET(){
    checkoutInventoryReady:checkoutInventoryReady(inventory),
    inventoryMode:inventory.mode,
    products:inventory.products.map(line=>({
-    id:line.id,priceCents:line.priceCents,
+    id:line.id,priceCents:line.priceCents,uploadedPhotoUrl:line.uploadedPhotoUrl??null,
     approved:line.active&&line.sellable&&["NEW","OPEN_BOX"].includes(line.condition)&&line.countConfirmed&&line.conditionReviewed,
     inStock:eligibleLine(line),
     available:eligibleLine(line)?line.available:0
