@@ -14,7 +14,8 @@ export async function recordPaidBoutiqueOrder(sessionId:string){
  for await(const line of client.checkout.sessions.listLineItems(sessionId,{limit:100,expand:["data.price.product"]})){
   const product=line.price?.product;
   const mappedId=typeof product==="object"&&product&&!product.deleted?product.metadata?.product_id:undefined;
-  const sourceId=mappedId&&/^\d{1,9}$/.test(mappedId)?mappedId:"unmatched:"+line.id;
+  if(!mappedId||!/^\d{1,9}$/.test(mappedId))throw new Error("Paid order product mapping is missing.");
+  const sourceId=mappedId;
   if(!Number.isSafeInteger(line.quantity)||!line.quantity||line.quantity<1)
    throw new Error("An order line could not be matched.");
   const existing=items.find(item=>item.sourceId===sourceId);
