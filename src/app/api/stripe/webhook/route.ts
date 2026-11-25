@@ -1,6 +1,7 @@
 import {NextResponse} from "next/server";
 import {neon} from "@neondatabase/serverless";
 import {recordPaidBoutiqueOrder} from "@/lib/stripe-orders";
+import {releaseBoutiqueHold} from "@/lib/boutique-reservations";
 import {verifyCheckoutEvent} from "@/lib/stripe-webhook";
 
 export const runtime="nodejs";
@@ -28,6 +29,7 @@ export async function POST(req:Request){
   const current=await sql`SELECT processing_status FROM public.stripe_checkout_events WHERE account_id=${receipt.accountId} AND event_id=${receipt.eventId}`;
   if(current[0]?.processing_status==="PROCESSED")return NextResponse.json({received:true},{headers});
   if(receipt.paymentState==="PAID")await recordPaidBoutiqueOrder(receipt.sessionId);
+  if(receipt.paymentState==="EXPIRED"||receipt.paymentState==="FAILED")await releaseBoutiqueHold(receipt.reservationId);
   await sql`UPDATE public.stripe_checkout_events SET processing_status='PROCESSED' WHERE account_id=${receipt.accountId} AND event_id=${receipt.eventId}`;
   return NextResponse.json({received:true},{headers});
  }catch{
