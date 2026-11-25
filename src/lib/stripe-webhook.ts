@@ -10,6 +10,8 @@ export function verifyCheckoutEvent(raw:string,signature:string,secret:string,ke
  if(!checkoutEvents.has(event.type))return null;
  const session=event.data.object as Stripe.Checkout.Session;
  if(session.metadata?.source!=="dionnesboutique.com")return null;
+ const reservationId=session.metadata?.reservation_id;
+ if(!reservationId||!/^[0-9a-f-]{36}$/i.test(reservationId))throw new Error("Checkout reservation identity missing.");
  if(!/^evt_[a-zA-Z0-9]+$/.test(event.id)||!/^cs_live_[a-zA-Z0-9]+$/.test(session.id)||
     !Number.isSafeInteger(event.created)||event.created<=0||session.object!=="checkout.session"||session.livemode!==true)
   throw new Error("Invalid checkout event.");
@@ -19,5 +21,5 @@ export function verifyCheckoutEvent(raw:string,signature:string,secret:string,ke
   event.type==="checkout.session.async_payment_failed"?"FAILED":
   session.payment_status==="paid"?"PAID":"PENDING";
  return {accountId:boutiqueAccountId,eventId:event.id,sessionId:session.id,eventType:event.type,
-  eventCreatedAt:new Date(event.created*1000).toISOString(),paymentState,amountTotal:session.amount_total??null,currency:session.currency??null};
+  eventCreatedAt:new Date(event.created*1000).toISOString(),paymentState,reservationId,amountTotal:session.amount_total??null,currency:session.currency??null};
 }
