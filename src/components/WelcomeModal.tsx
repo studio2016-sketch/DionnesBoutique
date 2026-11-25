@@ -59,7 +59,7 @@ export default function WelcomeModal(){
     <h2 id="bfcm-title" className="bfcm-headline">UP TO <strong>50% OFF</strong></h2>
     <p className="bfcm-subline">SITEWIDE MERCHANDISE SALE</p>
     <div id="bfcm-description" className="bfcm-copy">
-     <p>Save more as you shop. Discount tiers are based on your merchandise subtotal <strong>before discounts, shipping and tax:</strong></p>
+     <p><strong>Discount applied in your shopping bag only.</strong> The tier is based on your total merchandise purchase before discounts, shipping and tax:</p>
      <div className="bfcm-tiers" aria-label="Sale discount thresholds">
       <div><b>30% OFF</b><span>Under $75</span></div>
       <div><b>40% OFF</b><span>$75–$149.99</span></div>
