@@ -19,6 +19,7 @@ jobs:
           node tests/stripe-webhook.cjs
           node tests/stripe-orders.cjs
           node tests/checkout-settings.cjs
+          node tests/black-friday-tiers.cjs
           npx tsc --noEmit
       - run: npx playwright install --with-deps chromium
       - run: npm run build
@@ -35,6 +36,8 @@ jobs:
         run: node scripts/check-responsive.mjs
       - name: Verify Add to Bag opens and updates mobile shopping drawer
         run: node scripts/check-add-to-bag.mjs
+      - name: Verify mobile popup tiers, single modal, and one-screen fit
+        run: node scripts/check-promo-modal.mjs
       - name: Audit all product photographs in browser
         run: node scripts/audit-catalog-images.mjs
       - uses: actions/upload-artifact@v4
