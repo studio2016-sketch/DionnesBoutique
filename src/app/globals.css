@@ -250,3 +250,20 @@ html{scroll-padding-top:20px}
 .checkout-action:disabled{opacity:.5;cursor:not-allowed}
 .drawer .safe-note{font-size:13px!important;line-height:1.5}
 .product-meta .category{display:block;min-height:1.5em}
+
+/* Shopping bag confirmation — visible immediately after an item is added. */
+.bag-feedback{
+ padding:13px 15px;
+ background:#f3e8d7;
+ border:1px solid #d6bd93;
+ color:#533a22;
+ font:600 14px/1.45 "DM Sans",sans-serif!important;
+ margin:20px 0 6px;
+}
+.drawer{position:relative;overscroll-behavior:contain}
+.drawer-head button{min-width:44px;min-height:44px;display:grid;place-items:center}
+.drawer .bag-item{align-items:center}
+@media(max-width:650px){
+ .drawer{width:100%;max-width:100%;padding:24px 21px calc(30px + env(safe-area-inset-bottom,0px))}
+ .drawer .bag-feedback{font-size:14px!important}
+}
