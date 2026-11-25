@@ -88,7 +88,7 @@ export async function POST(request:Request){
   const data=await response.json();
   if(!response.ok||typeof data.url!=="string"||!data.url.startsWith("https://checkout.stripe.com/")||typeof data.id!=="string"||!/^cs_live_[A-Za-z0-9]+$/.test(data.id))throw Error("Stripe Checkout session failed");
   createdSession=data.id;
-  const attached=await wgosReservation({action:"attach",id:holdId,sessionId:createdSession});
+  const attached=await wgosReservation({action:"attach",id:holdId,sessionId:data.id as string});
   if(attached?.attached!==true)throw Error("Could not attach checkout reservation");
   return NextResponse.json({url:data.url},{headers:{"Cache-Control":"no-store"}});
  }catch(error){
