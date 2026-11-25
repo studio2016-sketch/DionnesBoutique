@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import {merchandiseCents} from "@/lib/black-friday";
+import {priceCart} from "@/lib/black-friday";
 import { products } from "@/data/products";
 import {checkoutCommerceSettings} from "@/lib/checkout-settings";
 import { verifiedBoutiqueStripeKey } from "@/lib/stripe-account";
@@ -33,13 +33,12 @@ export async function POST(request:Request){
   if(!x||!Number.isSafeInteger(x.id)||!Number.isSafeInteger(x.quantity)||x.quantity<1)return null;
   const p=products.find(p=>p.id===x.id),live=inventoryById.get(x.id);
   if(!p||!live||!eligibleLine(live)||x.quantity>live.available)return null;
-  const cents=merchandiseCents(live.priceCents/100,now,originalSubtotalCents);
-  if(!Number.isSafeInteger(cents)||cents<=0)return null;
-  return {product:p,quantity:x.quantity,cents};
+  return {product:p,quantity:x.quantity,priceCents:live.priceCents};
  });
  if(items.some(x=>x===null)||new Set(lines.map(x=>x.id)).size!==lines.length)return NextResponse.json({error:"One or more products are not approved for sale."},{status:409});
- const subtotalCents=items.reduce((sum,line)=>sum+(line?line.cents*line.quantity:0),0);
- if(!Number.isSafeInteger(subtotalCents)||subtotalCents<=0)return NextResponse.json({error:"Invalid order subtotal."},{status:400});
+ let pricedCart;
+ try{pricedCart=priceCart(items.map(line=>({id:line!.product.id,priceCents:line!.priceCents,quantity:line!.quantity})),now)}catch{return NextResponse.json({error:"Invalid shopping bag pricing."},{status:400})}
+ const subtotalCents=pricedCart.discountedSubtotalCents;
  const params=new URLSearchParams();
  params.set("mode","payment");
  params.set("success_url",origin+"/checkout/success?session_id={CHECKOUT_SESSION_ID}");
@@ -49,14 +48,17 @@ export async function POST(request:Request){
  params.set("phone_number_collection[enabled]","true");
  params.set("customer_creation","always");
  params.set("metadata[source]","dionnesboutique.com");
- params.set("metadata[promotion_subtotal_cents]",String(originalSubtotalCents));
- items.forEach((line,i)=>{
-  if(!line)return;
+ params.set("metadata[promotion_subtotal_cents]",String(pricedCart.originalSubtotalCents));
+ params.set("metadata[promotion_discount_percent]",String(pricedCart.discountPercent));
+ params.set("metadata[promotion_discount_cents]",String(pricedCart.discountCents));
+ const itemsById=new Map(items.map(line=>[line!.product.id,line!]));
+ pricedCart.stripeLines.forEach((line,i)=>{
+  const item=itemsById.get(line.id)!;
   params.set(`line_items[${i}][price_data][currency]`,"usd");
-  params.set(`line_items[${i}][price_data][unit_amount]`,String(line.cents));
-  params.set(`line_items[${i}][price_data][product_data][name]`,`${line.product.brand} ${line.product.name} — ${line.product.variant}`);
+  params.set(`line_items[${i}][price_data][unit_amount]`,String(line.unitAmountCents));
+  params.set(`line_items[${i}][price_data][product_data][name]`,`${item.product.brand} ${item.product.name} — ${item.product.variant}`);
   params.set(`line_items[${i}][quantity]`,String(line.quantity));
-  params.set(`line_items[${i}][price_data][product_data][metadata][product_id]`,String(line.product.id));
+  params.set(`line_items[${i}][price_data][product_data][metadata][product_id]`,String(line.id));
  });
  let reservationId:string|null=null, createdSession:string|null=null, verifiedKey:string|null=null;
  try{
@@ -82,7 +84,7 @@ export async function POST(request:Request){
   params.set("shipping_options[0][shipping_rate_data][delivery_estimate][minimum][value]",String(settings.minDays));
   params.set("shipping_options[0][shipping_rate_data][delivery_estimate][maximum][unit]","business_day");
   params.set("shipping_options[0][shipping_rate_data][delivery_estimate][maximum][value]",String(settings.maxDays));
-  items.forEach((_line,i)=>{
+  pricedCart.stripeLines.forEach((_line,i)=>{
    params.set(`line_items[${i}][price_data][product_data][tax_code]`,settings.taxCode);
    params.set(`line_items[${i}][price_data][tax_behavior]`,settings.taxBehavior);
   });
