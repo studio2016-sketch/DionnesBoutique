@@ -2,7 +2,7 @@ import "server-only";
 import {products as catalog} from "@/data/products";
 
 export type StoreInventoryLine={
- id:number;priceCents:number;available:number;active:boolean;sellable:boolean;
+ id:number;priceCents:number;available:number;uploadedPhotoUrl?:string|null;active:boolean;sellable:boolean;
  condition:string;countConfirmed:boolean;conditionReviewed:boolean;
 };
 export type StoreInventory={
@@ -39,6 +39,12 @@ export async function fetchWgosInventory():Promise<StoreInventory>{
    !["NEW","OPEN_BOX","USED","DAMAGED","HOLD","UNKNOWN"].includes(line.condition)||
    ids.has(line.id)||!catalog.some(p=>p.id===line.id))
     throw new Error("WGOS inventory product data is invalid.");
+  if(line.uploadedPhotoUrl!=null){
+   if(typeof line.uploadedPhotoUrl!=="string")throw new Error("Invalid approved photo URL");
+   const image=new URL(line.uploadedPhotoUrl);
+   if(image.protocol!=="https:"||!image.hostname.endsWith(".blob.vercel-storage.com"))
+    throw new Error("Unapproved product image host");
+  }
   ids.add(line.id);
  }
  return data as StoreInventory;
