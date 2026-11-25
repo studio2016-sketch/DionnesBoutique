@@ -14,7 +14,7 @@ const run=context.exports.recordPaidBoutiqueOrder;
  await run(session.id);assert.equal(posted.items[0].sourceId,"1");assert.equal(posted.reservationId,"40870127-0521-42cf-a5f0-08d0a612d335");
  session={...session,payment_status:"unpaid"};requests=0;await assert.rejects(()=>run(session.id));assert.equal(requests,0);
  session={...session,payment_status:"paid",metadata:{source:"another-site"}};await assert.rejects(()=>run(session.id));
- session={...session,metadata:{source:"dionnesboutique.com"}};
+ session={...session,metadata:{source:"dionnesboutique.com",reservation_id:"40870127-0521-42cf-a5f0-08d0a612d335"}};
  lines=[...lines,...lines];await run(session.id);assert.equal(posted.items.length,1);assert.equal(posted.items[0].quantity,2);
  lines=[{id:"li_unknown",quantity:1,price:{product:{metadata:{}}}}];requests=0;await assert.rejects(()=>run(session.id));assert.equal(requests,0);
  lines=[{id:"li_1",quantity:1,description:"Fixture",price:{product:{metadata:{product_id:"1"}}}}];
