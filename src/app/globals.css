@@ -267,3 +267,53 @@ html{scroll-padding-top:20px}
  .drawer{width:100%;max-width:100%;padding:24px 21px calc(30px + env(safe-area-inset-bottom,0px))}
  .drawer .bag-feedback{font-size:14px!important}
 }
+
+/* Tiered BFCM modal: one component, typographic branding (no blurred tiny logo),
+   fits an iPhone's dynamic viewport without clipping the shop action. */
+.bfcm-overlay{padding:10px;backdrop-filter:blur(5px)}
+.bfcm-dialog{width:min(100%,560px);max-height:calc(100dvh - 22px);padding:8px;overflow:auto;overscroll-behavior:contain}
+.bfcm-border{position:relative;padding:29px 24px 20px;min-height:0;display:flex;flex-direction:column;align-items:center;gap:7px}
+.bfcm-close{top:12px;right:13px;width:38px;height:38px;font-size:25px;display:grid;place-items:center}
+.bfcm-brand{font:600 clamp(21px,4vw,29px)/1.1 'Cormorant Garamond',serif;letter-spacing:.15em;color:#745128;margin:0 38px 1px}
+.bfcm-kicker{font:600 10px/1.35 'DM Sans',sans-serif;letter-spacing:.12em;color:#906b3b;margin:2px 0}
+.welcome-dialog.bfcm-dialog .bfcm-headline{font:600 clamp(30px,6vw,49px)/1.0 'DM Sans',sans-serif;color:#2f2118;margin:9px 0 0;letter-spacing:-.025em}
+.bfcm-headline strong{color:#a47830}
+.bfcm-subline{font:600 11px/1.2 'DM Sans',sans-serif;letter-spacing:.18em;color:#8b683d;margin:2px 0 9px}
+.bfcm-copy{width:100%;max-width:460px;font:15px/1.5 'DM Sans',sans-serif;color:#3d3128;text-align:center}
+.bfcm-copy p{margin:7px 0 9px}
+.bfcm-tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0 8px}
+.bfcm-tiers>div{padding:12px 4px 10px;border:1px solid #c8ab79;background:#f9f0e3;display:flex;flex-direction:column;gap:5px}
+.bfcm-tiers b{font:700 clamp(15px,3vw,22px)/1.1 'DM Sans',sans-serif;color:#7c552b}
+.bfcm-tiers span{font:500 12px/1.2 'DM Sans',sans-serif;color:#5e5141}
+.bfcm-copy .bfcm-small{font:12px/1.55 'DM Sans',sans-serif;color:#74614e;margin:10px 0 8px}
+.bfcm-copy .bfcm-payment{font:600 13px/1.45 'DM Sans',sans-serif;margin:8px 0;color:#4b3222}
+.bfcm-shop{min-height:46px;margin:9px auto 0;padding:13px 25px;font:700 12px/1.2 'DM Sans',sans-serif;width:min(100%,290px)}
+.bfcm-later{margin:3px 0 0;padding:6px;font-size:13px;min-height:34px}
+.bag-discount{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #e6d9c6;font:600 12px/1.4 'DM Sans',sans-serif;color:#856031}
+.sale-qualifier{display:block;margin-top:6px;font:500 10px/1.35 'DM Sans',sans-serif;color:#856b48}
+@media(max-width:650px){
+ .bfcm-overlay{padding:7px!important}
+ .bfcm-dialog{width:100%;max-height:calc(100dvh - 16px)!important;padding:5px!important}
+ .bfcm-border{padding:29px 12px 10px!important;gap:3px!important}
+ .bfcm-close{top:4px;right:5px;width:38px;height:38px}
+ .bfcm-brand{font-size:clamp(17px,5.1vw,22px);margin:0 36px 3px}
+ .bfcm-kicker{font-size:clamp(8px,2.35vw,10px);letter-spacing:.06em;margin:2px 0}
+ .welcome-dialog.bfcm-dialog .bfcm-headline{font-size:clamp(30px,9.4vw,42px);line-height:1.04;margin:6px 0 0}
+ .bfcm-subline{font-size:10px;letter-spacing:.09em;margin:0 0 5px}
+ .bfcm-copy{font-size:clamp(11px,3vw,13px);line-height:1.35}
+ .bfcm-copy p{margin:5px 0 7px}
+ .bfcm-tiers{gap:5px;margin:7px 0}
+ .bfcm-tiers>div{padding:9px 2px 7px;gap:3px}
+ .bfcm-tiers b{font-size:clamp(13px,4.1vw,17px)}
+ .bfcm-tiers span{font-size:clamp(9px,2.9vw,11px)}
+ .bfcm-copy .bfcm-small{font-size:clamp(10px,2.6vw,11px);line-height:1.36;margin:7px 0 5px}
+ .bfcm-copy .bfcm-payment{font-size:clamp(11px,2.8vw,12px);line-height:1.35;margin:6px 0}
+ .bfcm-shop{padding:11px 17px;min-height:43px;margin:5px auto 0;font-size:11px}
+ .bfcm-later{min-height:28px;font-size:11px;padding:4px;margin-top:0}
+}
+@media(max-height:630px){
+ .bfcm-overlay{padding:4px!important}
+ .bfcm-dialog{max-height:calc(100dvh - 8px)!important}
+ .bfcm-border{padding-top:18px!important}
+ .bfcm-copy .bfcm-small{line-height:1.25}
+}
