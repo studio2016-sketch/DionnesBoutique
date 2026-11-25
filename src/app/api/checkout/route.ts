@@ -3,6 +3,7 @@ import {merchandiseCents} from "@/lib/black-friday";
 import { products } from "@/data/products";
 import {checkoutCommerceSettings} from "@/lib/checkout-settings";
 import { verifiedBoutiqueStripeKey } from "@/lib/stripe-account";
+import {fetchWgosInventory,eligibleLine,checkoutInventoryReady} from "@/lib/wgos-inventory";
 export const runtime="nodejs";
 export const dynamic="force-dynamic";
 const origin="https://dionnesboutique.com";
@@ -19,12 +20,16 @@ export async function POST(request:Request){
  let lines:BagLine[];
  try{const payload=await request.json();lines=payload.items;}catch{return NextResponse.json({error:"Invalid request."},{status:400})}
  if(!Array.isArray(lines)||!lines.length||lines.length>30)return NextResponse.json({error:"Please select valid items."},{status:400});
+ let inventory;
+ try{inventory=await fetchWgosInventory();}catch{return NextResponse.json({error:"Live inventory could not be verified. Please try again later."},{status:503});}
+ if(!checkoutInventoryReady(inventory))return NextResponse.json({error:"Store inventory release is still being finalized."},{status:503});
+ const inventoryById=new Map(inventory.products.map(item=>[item.id,item]));
  const now=Date.now();
  const items=lines.map(x=>{
   if(!x||!Number.isSafeInteger(x.id)||!Number.isSafeInteger(x.quantity)||x.quantity<1)return null;
-  const p=products.find(p=>p.id===x.id);
-  if(!p||p.category==="Open Box"||p.condition.includes("verify before launch")||p.condition.includes("pending")||x.quantity>p.stock)return null;
-  const cents=merchandiseCents(p.price,now);
+  const p=products.find(p=>p.id===x.id),live=inventoryById.get(x.id);
+  if(!p||!live||p.category==="Open Box"||!eligibleLine(live)||x.quantity>live.available)return null;
+  const cents=merchandiseCents(live.priceCents/100,now);
   if(!Number.isSafeInteger(cents)||cents<=0)return null;
   return {product:p,quantity:x.quantity,cents};
  });
@@ -84,6 +89,8 @@ export async function GET(){
   const key=await verifiedBoutiqueStripeKey();
   let shippingAndTaxConfigured=false;
   let shippingSettingsConnected=false;
+  let inventoryReady=false,approvedInStock=0;
+  try{const inventory=await fetchWgosInventory();inventoryReady=checkoutInventoryReady(inventory);approvedInStock=inventory.products.filter(eligibleLine).length;}catch{}
   try{await checkoutCommerceSettings(key);shippingAndTaxConfigured=true;shippingSettingsConnected=true;}catch(error){shippingSettingsConnected=error instanceof Error&&["Shipping and tax setup is incomplete.","Tax registration is not ready."].includes(error.message);}
   return NextResponse.json({
    stripeConnected:true,
@@ -92,7 +99,9 @@ export async function GET(){
    orderRecordingConfigured:Boolean(process.env.BOUTIQUE_ORDER_SYNC_SECRET),
    fulfillmentConfigured:process.env.ORDER_FULFILLMENT_READY==="true",
    shippingSettingsConnected,
-   shippingAndTaxConfigured
+   shippingAndTaxConfigured,
+   inventoryReady,
+   approvedInStock
   },{headers:{"Cache-Control":"no-store, private"}});
  }catch{
   return NextResponse.json({stripeConnected:false,error:"Stripe connection could not be verified."},{status:503,headers:{"Cache-Control":"no-store, private"}});
