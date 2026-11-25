@@ -7,7 +7,8 @@ let failures=0;
 for (const size of sizes){
  const page=await browser.newPage({viewport:{width:size.width,height:size.height},deviceScaleFactor:1});
  try{
-  await page.goto('http://127.0.0.1:3000/',{waitUntil:'networkidle',timeout:30000});
+  await page.goto('http://127.0.0.1:3000/',{waitUntil:'domcontentloaded',timeout:30000});
+  await page.locator('.site-header .brand').waitFor({state:'visible',timeout:6000});
   await page.screenshot({path:`artifacts/screenshots/${size.name}-homepage.png`,fullPage:false});
   const dimensions=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:window.innerWidth}));
   if(dimensions.scroll>dimensions.viewport+2){console.error(`${size.name}: horizontal overflow ${dimensions.scroll} > ${dimensions.viewport}`);failures++;}
@@ -18,7 +19,7 @@ for (const size of sizes){
    else if(!(boxes[0].x+boxes[0].width<=boxes[1].x+2&&boxes[1].x+boxes[1].width<=boxes[2].x+2)){console.error(`${size.name}: mobile header controls overlap`);failures++;}
   }
   await page.evaluate(()=>sessionStorage.clear());
-  await page.reload({waitUntil:'networkidle'});
+  await page.reload({waitUntil:'domcontentloaded'});
   try{await page.locator('.welcome-dialog').waitFor({timeout:4500});}catch{console.error(`${size.name}: welcome did not appear`);failures++;}
   await page.screenshot({path:`artifacts/screenshots/${size.name}-welcome.png`,fullPage:false});
   await page.locator('.welcome-exit').click();
