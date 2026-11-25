@@ -27,6 +27,8 @@ export async function POST(request:Request){
   return {product:p,quantity:x.quantity,cents};
  });
  if(items.some(x=>x===null)||new Set(lines.map(x=>x.id)).size!==lines.length)return NextResponse.json({error:"One or more products are not approved for sale."},{status:409});
+ const subtotalCents=items.reduce((sum,line)=>sum+(line?line.cents*line.quantity:0),0);
+ if(!Number.isSafeInteger(subtotalCents)||subtotalCents<=0)return NextResponse.json({error:"Invalid order subtotal."},{status:400});
  const params=new URLSearchParams();
  params.set("mode","payment");
  params.set("success_url",origin+"/checkout/success?session_id={CHECKOUT_SESSION_ID}");
@@ -47,12 +49,14 @@ export async function POST(request:Request){
  try{
   const key=await verifiedBoutiqueStripeKey();
   const settings=await checkoutCommerceSettings(key);
+  const freeShipping=settings.freeShippingThresholdCents!=null&&subtotalCents>=settings.freeShippingThresholdCents;
+  const shippingCents=freeShipping?0:settings.shippingCents;
   params.set("automatic_tax[enabled]","true");
   params.set("shipping_options[0][shipping_rate_data][type]","fixed_amount");
   params.set("shipping_options[0][shipping_rate_data][tax_behavior]","exclusive");
-  params.set("shipping_options[0][shipping_rate_data][fixed_amount][amount]",String(settings.shippingCents));
+  params.set("shipping_options[0][shipping_rate_data][fixed_amount][amount]",String(shippingCents));
   params.set("shipping_options[0][shipping_rate_data][fixed_amount][currency]","usd");
-  params.set("shipping_options[0][shipping_rate_data][display_name]","US delivery");
+  params.set("shipping_options[0][shipping_rate_data][display_name]",freeShipping?"Free US delivery":"Standard US delivery");
   params.set("shipping_options[0][shipping_rate_data][delivery_estimate][minimum][unit]","business_day");
   params.set("shipping_options[0][shipping_rate_data][delivery_estimate][minimum][value]",String(settings.minDays));
   params.set("shipping_options[0][shipping_rate_data][delivery_estimate][maximum][unit]","business_day");
