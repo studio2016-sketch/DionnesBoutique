@@ -229,3 +229,17 @@ html{scroll-padding-top:20px}
  .hero-left p{font-size:19px}
  .hero .eyebrow{font-size:10px;letter-spacing:.11em}
 }
+
+/* Image integrity: show complete merchandise photography without geometric distortion
+   or artificial enlargement of low-resolution assets. */
+.product-photo,.detail-product-photo,.deals-photo{
+ object-fit:contain!important;object-position:center!important;
+ image-rendering:auto;
+ transform:none!important;
+ max-width:100%;
+}
+.product-art .product-photo{margin:auto;}
+.product-art:has(.product-photo):hover .product-photo{transform:none!important;}
+@media (prefers-reduced-motion:reduce){
+ .product-photo,.detail-product-photo,.deals-photo{transition:none!important}
+}
