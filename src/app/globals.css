@@ -317,3 +317,9 @@ html{scroll-padding-top:20px}
  .bfcm-border{padding-top:18px!important}
  .bfcm-copy .bfcm-small{line-height:1.25}
 }
+
+/* One official high-resolution logo route across the whole storefront. */
+.bfcm-brand-art{width:170px;max-width:60%;height:60px;display:block;object-fit:contain;margin:-14px auto -10px}
+@media(max-width:650px){
+ .bfcm-brand-art{width:146px;height:47px;margin:-13px auto -9px}
+}
