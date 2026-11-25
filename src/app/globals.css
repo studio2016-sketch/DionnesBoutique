@@ -243,3 +243,10 @@ html{scroll-padding-top:20px}
 @media (prefers-reduced-motion:reduce){
  .product-photo,.detail-product-photo,.deals-photo{transition:none!important}
 }
+
+/* Live boutique shopping: clearly distinguish available inventory and checkout. */
+.price-row button:disabled{cursor:not-allowed;opacity:.54;border-color:#d8d1c8;background:#f4efe8;color:#766f69}
+.checkout-action{margin-top:18px;width:100%;justify-content:center;min-height:52px;border:0;font-weight:700;letter-spacing:.12em}
+.checkout-action:disabled{opacity:.5;cursor:not-allowed}
+.drawer .safe-note{font-size:13px!important;line-height:1.5}
+.product-meta .category{display:block;min-height:1.5em}
