@@ -61,10 +61,10 @@ export async function POST(request:Request){
   const requestId=crypto.randomUUID();
   const hold=await wgosReservation({action:"reserve",requestId,lines:lines.map(x=>({id:x.id,quantity:x.quantity}))});
   if(typeof hold?.id!=="string"||!Array.isArray(hold.lines)||hold.lines.length!==lines.length)throw Error("Invalid inventory hold");
-  reservationId=hold.id;
+  const holdId:string=hold.id;reservationId=holdId;
   const expected=new Map(lines.map(line=>[line.id,{quantity:line.quantity,priceCents:inventoryById.get(line.id)?.priceCents}]));
   for(const line of hold.lines){const record=expected.get(line.id);if(!record||record.quantity!==line.quantity||record.priceCents!==line.priceCents)throw Error("Product data changed during checkout");}
-  params.set("metadata[reservation_id]",reservationId);
+  params.set("metadata[reservation_id]",holdId);
   params.set("expires_at",String(Math.floor(Date.now()/1000)+1805));
   const freeShipping=settings.freeShippingThresholdCents!=null&&subtotalCents>=settings.freeShippingThresholdCents;
   const shippingCents=freeShipping?0:settings.shippingCents;
@@ -88,7 +88,7 @@ export async function POST(request:Request){
   const data=await response.json();
   if(!response.ok||typeof data.url!=="string"||!data.url.startsWith("https://checkout.stripe.com/")||typeof data.id!=="string"||!/^cs_live_[A-Za-z0-9]+$/.test(data.id))throw Error("Stripe Checkout session failed");
   createdSession=data.id;
-  const attached=await wgosReservation({action:"attach",id:reservationId,sessionId:createdSession});
+  const attached=await wgosReservation({action:"attach",id:holdId,sessionId:createdSession});
   if(attached?.attached!==true)throw Error("Could not attach checkout reservation");
   return NextResponse.json({url:data.url},{headers:{"Cache-Control":"no-store"}});
  }catch(error){
