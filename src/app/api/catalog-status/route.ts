@@ -14,7 +14,8 @@ export async function GET(){
    products:inventory.products.map(line=>({
     id:line.id,priceCents:line.priceCents,
     approved:line.active&&line.sellable&&line.condition==="NEW"&&line.countConfirmed&&line.conditionReviewed,
-    inStock:eligibleLine(line)
+    inStock:eligibleLine(line),
+    available:eligibleLine(line)?line.available:0
    }))
   },{headers});
  }catch{
