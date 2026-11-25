@@ -10,7 +10,7 @@ export type StoreInventory={
  cutoverReady:boolean;reconciliationStatus:string;products:StoreInventoryLine[];
 };
 export function eligibleLine(line:StoreInventoryLine){
- return line.active&&line.sellable&&line.condition==="NEW"&&
+ return line.active&&line.sellable&&["NEW","OPEN_BOX"].includes(line.condition)&&
   line.countConfirmed&&line.conditionReviewed&&line.available>0;
 }
 export function checkoutInventoryReady(data:StoreInventory){
