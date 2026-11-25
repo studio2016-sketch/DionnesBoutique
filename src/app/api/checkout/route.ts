@@ -25,12 +25,15 @@ export async function POST(request:Request){
  try{inventory=await fetchWgosInventory();}catch{return NextResponse.json({error:"Live inventory could not be verified. Please try again later."},{status:503});}
  if(!checkoutInventoryReady(inventory))return NextResponse.json({error:"Store inventory release is still being finalized."},{status:503});
  const inventoryById=new Map(inventory.products.map(item=>[item.id,item]));
+ if(lines.some(x=>!x||!Number.isSafeInteger(x.id)||!Number.isSafeInteger(x.quantity)||x.quantity<1))return NextResponse.json({error:"Invalid basket quantities."},{status:400});
+ const originalSubtotalCents=lines.reduce((sum,x)=>sum+(inventoryById.get(x.id)?.priceCents??0)*x.quantity,0);
+ if(!Number.isSafeInteger(originalSubtotalCents)||originalSubtotalCents<=0)return NextResponse.json({error:"Invalid basket subtotal."},{status:400});
  const now=Date.now();
  const items=lines.map(x=>{
   if(!x||!Number.isSafeInteger(x.id)||!Number.isSafeInteger(x.quantity)||x.quantity<1)return null;
   const p=products.find(p=>p.id===x.id),live=inventoryById.get(x.id);
   if(!p||!live||!eligibleLine(live)||x.quantity>live.available)return null;
-  const cents=merchandiseCents(live.priceCents/100,now);
+  const cents=merchandiseCents(live.priceCents/100,now,originalSubtotalCents);
   if(!Number.isSafeInteger(cents)||cents<=0)return null;
   return {product:p,quantity:x.quantity,cents};
  });
@@ -46,6 +49,7 @@ export async function POST(request:Request){
  params.set("phone_number_collection[enabled]","true");
  params.set("customer_creation","always");
  params.set("metadata[source]","dionnesboutique.com");
+ params.set("metadata[promotion_subtotal_cents]",String(originalSubtotalCents));
  items.forEach((line,i)=>{
   if(!line)return;
   params.set(`line_items[${i}][price_data][currency]`,"usd");
