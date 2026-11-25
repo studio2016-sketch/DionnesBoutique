@@ -22,7 +22,7 @@ export async function POST(request:Request){
   if(!x||!Number.isSafeInteger(x.id)||!Number.isSafeInteger(x.quantity)||x.quantity<1)return null;
   const p=products.find(p=>p.id===x.id);
   if(!p||p.category==="Open Box"||p.condition.includes("verify before launch")||p.condition.includes("pending")||x.quantity>p.stock)return null;
-  const cents=Math.round(p.price*100);
+  const cents=Math.round(p.price*100/2);
   if(!Number.isSafeInteger(cents)||cents<=0)return null;
   return {product:p,quantity:x.quantity,cents};
  });
