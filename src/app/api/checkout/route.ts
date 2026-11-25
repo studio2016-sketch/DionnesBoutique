@@ -4,6 +4,7 @@ import { products } from "@/data/products";
 import {checkoutCommerceSettings} from "@/lib/checkout-settings";
 import { verifiedBoutiqueStripeKey } from "@/lib/stripe-account";
 import {fetchWgosInventory,eligibleLine,checkoutInventoryReady} from "@/lib/wgos-inventory";
+import {wgosReservation,releaseBoutiqueHold} from "@/lib/boutique-reservations";
 export const runtime="nodejs";
 export const dynamic="force-dynamic";
 const origin="https://dionnesboutique.com";
@@ -28,7 +29,7 @@ export async function POST(request:Request){
  const items=lines.map(x=>{
   if(!x||!Number.isSafeInteger(x.id)||!Number.isSafeInteger(x.quantity)||x.quantity<1)return null;
   const p=products.find(p=>p.id===x.id),live=inventoryById.get(x.id);
-  if(!p||!live||p.category==="Open Box"||!eligibleLine(live)||x.quantity>live.available)return null;
+  if(!p||!live||!eligibleLine(live)||x.quantity>live.available)return null;
   const cents=merchandiseCents(live.priceCents/100,now);
   if(!Number.isSafeInteger(cents)||cents<=0)return null;
   return {product:p,quantity:x.quantity,cents};
@@ -53,9 +54,18 @@ export async function POST(request:Request){
   params.set(`line_items[${i}][quantity]`,String(line.quantity));
   params.set(`line_items[${i}][price_data][product_data][metadata][product_id]`,String(line.product.id));
  });
+ let reservationId:string|null=null, createdSession:string|null=null, verifiedKey:string|null=null;
  try{
-  const key=await verifiedBoutiqueStripeKey();
+  const key=await verifiedBoutiqueStripeKey();verifiedKey=key;
   const settings=await checkoutCommerceSettings(key);
+  const requestId=crypto.randomUUID();
+  const hold=await wgosReservation({action:"reserve",requestId,lines:lines.map(x=>({id:x.id,quantity:x.quantity}))});
+  if(typeof hold?.id!=="string"||!Array.isArray(hold.lines)||hold.lines.length!==lines.length)throw Error("Invalid inventory hold");
+  reservationId=hold.id;
+  const expected=new Map(lines.map(line=>[line.id,{quantity:line.quantity,priceCents:inventoryById.get(line.id)?.priceCents}]));
+  for(const line of hold.lines){const record=expected.get(line.id);if(!record||record.quantity!==line.quantity||record.priceCents!==line.priceCents)throw Error("Product data changed during checkout");}
+  params.set("metadata[reservation_id]",reservationId);
+  params.set("expires_at",String(Math.floor(Date.now()/1000)+1805));
   const freeShipping=settings.freeShippingThresholdCents!=null&&subtotalCents>=settings.freeShippingThresholdCents;
   const shippingCents=freeShipping?0:settings.shippingCents;
   params.set("automatic_tax[enabled]","true");
@@ -73,15 +83,20 @@ export async function POST(request:Request){
    params.set(`line_items[${i}][price_data][tax_behavior]`,settings.taxBehavior);
   });
   const response=await fetch("https://api.stripe.com/v1/checkout/sessions",{
-   method:"POST",headers:{Authorization:`Bearer ${key}`,"Content-Type":"application/x-www-form-urlencoded", "Idempotency-Key":crypto.randomUUID()},body:params.toString(),cache:"no-store",signal:AbortSignal.timeout(15000)
+   method:"POST",headers:{Authorization:`Bearer ${key}`,"Content-Type":"application/x-www-form-urlencoded", "Idempotency-Key":requestId},body:params.toString(),cache:"no-store",signal:AbortSignal.timeout(15000)
   });
   const data=await response.json();
-  if(!response.ok||typeof data.url!=="string"||!data.url.startsWith("https://checkout.stripe.com/")){
-   console.error("Stripe checkout session creation failed",response.status,data?.error?.type);
-   return NextResponse.json({error:"Checkout could not be started."},{status:502});
-  }
+  if(!response.ok||typeof data.url!=="string"||!data.url.startsWith("https://checkout.stripe.com/")||typeof data.id!=="string"||!/^cs_live_[A-Za-z0-9]+$/.test(data.id))throw Error("Stripe Checkout session failed");
+  createdSession=data.id;
+  const attached=await wgosReservation({action:"attach",id:reservationId,sessionId:createdSession});
+  if(attached?.attached!==true)throw Error("Could not attach checkout reservation");
   return NextResponse.json({url:data.url},{headers:{"Cache-Control":"no-store"}});
- }catch{return NextResponse.json({error:"Checkout temporarily unavailable."},{status:502})}
+ }catch(error){
+  console.error("Boutique Checkout session failed",error instanceof Error?error.message:"unknown");
+  if(createdSession&&verifiedKey){try{await fetch("https://api.stripe.com/v1/checkout/sessions/"+encodeURIComponent(createdSession)+"/expire",{method:"POST",headers:{Authorization:"Bearer "+verifiedKey},cache:"no-store",signal:AbortSignal.timeout(10000)});}catch{}}
+  if(reservationId){try{await releaseBoutiqueHold(reservationId)}catch{console.error("Boutique hold release failed",reservationId)}}
+  return NextResponse.json({error:"Checkout temporarily unavailable. Your items were not purchased."},{status:502});
+ }
 }
 
 export async function GET(){
