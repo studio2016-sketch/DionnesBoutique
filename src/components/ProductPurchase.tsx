@@ -34,8 +34,8 @@ export default function ProductPurchase({id,regularPrice,openBox}:{id:number;reg
   window.location.assign("/?bag=1#shop");
  }
  return <div>
-  <div className="detail-price">{sale&&<del style={{color:"#806c58",fontSize:"0.6em",marginRight:12}}>{currency(original)}</del>} {currency(price)}</div>
-  {openBox&&<p className="detail-small">Open-box listing; regular catalog price already reflects its stated condition. The Black Friday offer is applied to that listed price through November 30.</p>}
+  <div className="detail-price">{sale&&<del style={{color:"#806c58",fontSize:"0.6em",marginRight:12}}>{currency(original)}</del>} {currency(price)}</div>{sale&&<p className="detail-small">Displayed sale price is for a single-item order. Your final discount is recalculated from the full merchandise subtotal in your bag: under $75 = 30%, $75–$149.99 = 40%, $150+ = 50%. Shipping and tax extra.</p>}
+  {openBox&&<p className="detail-small">Open-box listing; the catalog price already reflects its stated condition. The Black Friday tier applies to this existing price through November 30.</p>}
   <button className="detail-buy-button" type="button" onClick={add} disabled={!canBuy}>
    {!checked?"CHECKING AVAILABILITY…":failed?"AVAILABILITY UNAVAILABLE":canBuy?"ADD TO SHOPPING BAG":listing?.available===0?"SOLD OUT":"CURRENTLY UNAVAILABLE"}
   </button>
