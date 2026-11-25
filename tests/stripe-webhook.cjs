@@ -12,10 +12,12 @@ const verify=context.exports.verifyCheckoutEvent;
 const secret="fixture-signing-secret",key="fixture-api-key";
 const client=new Stripe(key);
 const base={id:"evt_fixture1",type:"checkout.session.completed",created:Math.floor(Date.now()/1000),livemode:true,
- data:{object:{id:"cs_live_fixture1",object:"checkout.session",livemode:true,metadata:{source:"dionnesboutique.com"},amount_total:5500,currency:"usd",payment_status:"paid"}}};
+ data:{object:{id:"cs_live_fixture1",object:"checkout.session",livemode:true,metadata:{source:"dionnesboutique.com",reservation_id:"40870127-0521-42cf-a5f0-08d0a612d335"},amount_total:5500,currency:"usd",payment_status:"paid"}}};
 function signed(event,timestamp){const raw=JSON.stringify(event);return {raw,signature:client.webhooks.generateTestHeaderString({payload:raw,secret,...(timestamp?{timestamp}:{})})};}
 function run(event){const {raw,signature}=signed(event);return verify(raw,signature,secret,key);}
 assert.equal(run(base).paymentState,"PAID");
+assert.equal(run(base).reservationId,"40870127-0521-42cf-a5f0-08d0a612d335");
+assert.throws(()=>run({...base,data:{object:{...base.data.object,metadata:{source:"dionnesboutique.com"}}}}));
 assert.equal(run({...base,data:{object:{...base.data.object,payment_status:"unpaid"}}}).paymentState,"PENDING");
 assert.equal(run({...base,type:"checkout.session.async_payment_succeeded"}).paymentState,"PAID");
 assert.equal(run({...base,type:"checkout.session.async_payment_failed"}).paymentState,"FAILED");
