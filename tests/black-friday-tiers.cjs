@@ -22,7 +22,7 @@ assert.equal(saleActive(SALE_START),true);
 assert.equal(saleActive(SALE_END-1),true);
 assert.equal(saleActive(SALE_END),false);
 assert.equal(merchandiseCents(75,SALE_END,15000),7500);
-assert.throws(()=>saleRate(-1,now),/Invalid subtotal/);
+assert.throws(()=>saleRate(-1,now),/Invalid (merchandise )?subtotal/);
 // Cart totals drive one tier across the entire order, independent of product-page display.
 const sale1=priceCart([{id:17,priceCents:6500,quantity:1}],now);
 assert.equal(sale1.discountPercent,30);
