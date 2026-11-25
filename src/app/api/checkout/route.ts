@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { merchandiseCents } from "@/lib/black-friday";
 import { products } from "@/data/products";
 import {checkoutCommerceSettings} from "@/lib/checkout-settings";
 import { verifiedBoutiqueStripeKey } from "@/lib/stripe-account";
@@ -18,11 +19,12 @@ export async function POST(request:Request){
  let lines:BagLine[];
  try{const payload=await request.json();lines=payload.items;}catch{return NextResponse.json({error:"Invalid request."},{status:400})}
  if(!Array.isArray(lines)||!lines.length||lines.length>30)return NextResponse.json({error:"Please select valid items."},{status:400});
+ const now=Date.now();
  const items=lines.map(x=>{
   if(!x||!Number.isSafeInteger(x.id)||!Number.isSafeInteger(x.quantity)||x.quantity<1)return null;
   const p=products.find(p=>p.id===x.id);
   if(!p||p.category==="Open Box"||p.condition.includes("verify before launch")||p.condition.includes("pending")||x.quantity>p.stock)return null;
-  const cents=Math.round(p.price*100);
+  const cents=merchandiseCents(p.price,now);
   if(!Number.isSafeInteger(cents)||cents<=0)return null;
   return {product:p,quantity:x.quantity,cents};
  });
