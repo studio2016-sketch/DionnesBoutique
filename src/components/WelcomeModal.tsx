@@ -54,7 +54,7 @@ export default function WelcomeModal(){
   <section className="welcome-dialog bfcm-dialog" role="dialog" aria-modal="true" aria-labelledby="bfcm-title" aria-describedby="bfcm-description">
    <div className="welcome-border bfcm-border">
     <button ref={closeRef} className="welcome-exit bfcm-close" aria-label="Close Black Friday promotion" onClick={close}>×</button>
-    <p className="bfcm-brand">DIONNE’S BOUTIQUE</p>
+    <img className="bfcm-brand-art" src="/brand/official-logo" onError={e=>{e.currentTarget.onerror=null;e.currentTarget.src="/brand/official-gold-logo.svg"}} alt="Dionne’s Boutique official gold logo"/>
     <p className="bfcm-kicker">✦ BLACK FRIDAY THROUGH CYBER MONDAY ✦</p>
     <h2 id="bfcm-title" className="bfcm-headline">UP TO <strong>50% OFF</strong></h2>
     <p className="bfcm-subline">SITEWIDE MERCHANDISE SALE</p>
