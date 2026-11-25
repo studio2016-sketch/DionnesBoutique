@@ -1,6 +1,6 @@
 "use client";
 import {useEffect,useState} from "react";
-import {merchandisePrice,saleActive} from "@/lib/black-friday";
+import {saleActive} from "@/lib/black-friday";
 type Listing={id:number;priceCents:number;available:number;approved:boolean;inStock:boolean};
 const currency=(value:number)=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(value);
 export default function ProductPurchase({id,regularPrice,openBox}:{id:number;regularPrice:number;openBox:boolean}){
@@ -21,7 +21,6 @@ export default function ProductPurchase({id,regularPrice,openBox}:{id:number;reg
  },[id]);
  const original=listing?listing.priceCents/100:regularPrice;
  const sale=now>0&&saleActive(now);
- const price=now===0?original:merchandisePrice(original,now);
  const canBuy=checked&&!failed&&Boolean(listing?.approved&&listing.inStock);
  function add(){
   if(!canBuy)return;
@@ -34,8 +33,8 @@ export default function ProductPurchase({id,regularPrice,openBox}:{id:number;reg
   window.location.assign("/?bag=1#shop");
  }
  return <div>
-  <div className="detail-price">{sale&&<del style={{color:"#806c58",fontSize:"0.6em",marginRight:12}}>{currency(original)}</del>} {currency(price)}</div>{sale&&<p className="detail-small">Displayed sale price is for a single-item order. Your final discount is recalculated from the full merchandise subtotal in your bag: under $75 = 30%, $75–$149.99 = 40%, $150+ = 50%. Shipping and tax extra.</p>}
-  {openBox&&<p className="detail-small">Open-box listing; the catalog price already reflects its stated condition. The Black Friday tier applies to this existing price through November 30.</p>}
+  <div className="detail-price">{currency(original)}</div>{sale&&<p className="detail-small">Black Friday–Cyber Monday: your 30%, 40%, or 50% discount is calculated and applied <strong>in your shopping bag</strong>, using the total merchandise purchase amount before shipping and tax.</p>}
+  {openBox&&<p className="detail-small">Open-box merchandise is already marked down. Any promotional discount is calculated from your full shopping bag subtotal.</p>}
   <button className="detail-buy-button" type="button" onClick={add} disabled={!canBuy}>
    {!checked?"CHECKING AVAILABILITY…":failed?"AVAILABILITY UNAVAILABLE":canBuy?"ADD TO SHOPPING BAG":listing?.available===0?"SOLD OUT":"CURRENTLY UNAVAILABLE"}
   </button>
