@@ -12,7 +12,7 @@ export async function generateMetadata({params}:{params:Promise<{id:string}>}){
  const {id}=await params;const p=products.find(x=>String(x.id)===id);
  if(!p)return {title:"Product not found",robots:{index:false,follow:false}};
  const title=`${p.brand} ${p.name} — ${p.variant}`;
- const description=`Explore ${p.brand} ${p.name}, ${p.variant}, at Dionne’s Boutique. ${p.category==="Open Box"?"Open-box cosmetic priced to reflect its disclosed packaging condition.":"Current availability is checked directly against WGOS inventory."}`;
+ const description=`Explore ${p.brand} ${p.name} (${p.variant}) at Dionne’s Boutique. View ${p.category.toLowerCase()} product details and packaging condition.`;
  const canonical=`/product/${p.id}`;
  const photo=getProductImage(p.id);
  return {title,description,alternates:{canonical},openGraph:{title,description,url:canonical,type:"website",...(photo?{images:[{url:photo.url,alt:title}]}:{})},robots:{index:false,follow:false}};
@@ -25,7 +25,7 @@ export default async function ProductPage({params}:{params:Promise<{id:string}>}
   "@context":"https://schema.org",
   "@type":"Product",
   name:`${p.brand} ${p.name} — ${p.variant}`,
-  description:`Shop ${p.brand} ${p.name}, ${p.variant}. Live availability is managed through WGOS.`,
+  description:`${p.brand} ${p.name}, ${p.variant}. ${p.category} from Dionne’s Boutique.`,
   brand:{"@type":"Brand",name:p.brand},
   sku:`DB-${String(p.id).padStart(3,"0")}`,
   url:`https://dionnesboutique.com/product/${p.id}`,
